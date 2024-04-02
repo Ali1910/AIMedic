@@ -10,6 +10,8 @@ class AppointmentDateModelDTO {
   final String doctorName;
   final String doctorNum;
   final String doctorSpec;
+  final int fee;
+  final String univ;
 
   AppointmentDateModelDTO(
       {required this.appointmentTime,
@@ -22,20 +24,25 @@ class AppointmentDateModelDTO {
       required this.id,
       required this.month,
       required this.timeid,
-      required this.year});
+      required this.year,
+      required this.fee,
+      required this.univ});
 
   factory AppointmentDateModelDTO.fromjson(json) {
     return AppointmentDateModelDTO(
-        appointmentTime: json['appointmentTime'],
-        day: json['day'],
-        dcotorid: json['doctorid'],
-        doctorName: json['doctorname'],
-        doctorNum: json['doctoNum'],
-        doctorPic: json['doctorpic'],
-        doctorSpec: json['doctorspec'],
-        id: json['id'],
-        month: json['month'],
-        timeid: json['timeid'],
-        year: json['year']);
+      appointmentTime: json['appointmentTime'],
+      day: json['day'],
+      dcotorid: json['doctorid'],
+      doctorName: json['doctorname'],
+      doctorNum: json['doctoNum'],
+      doctorPic: json['doctorpic'],
+      doctorSpec: json['doctorspec'],
+      id: json['id'],
+      month: json['month'],
+      timeid: json['timeid'],
+      year: json['year'],
+      fee: json['fee'],
+      univ: json['unviersity'],
+    );
   }
 }

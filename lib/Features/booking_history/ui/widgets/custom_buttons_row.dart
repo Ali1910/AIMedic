@@ -6,6 +6,8 @@ import 'package:gbsub/Features/booking_history/data/appointment_data_model_dto.d
 import 'package:gbsub/Features/booking_history/logic/boking_history_cubit.dart';
 import 'package:gbsub/Features/booking_history/ui/widgets/custom_booking_item_button.dart';
 import 'package:gbsub/Features/booking_history/ui/widgets/custom_dialog.dart';
+import 'package:gbsub/Features/doctor_booking/logic/booking_cubit.dart';
+import 'package:gbsub/Features/doctor_booking/ui/update_booking/booking_update_view.dart';
 
 class CustomBokkingItemButtonsRow extends StatelessWidget {
   const CustomBokkingItemButtonsRow({
@@ -20,7 +22,25 @@ class CustomBokkingItemButtonsRow extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         CustomBookingButton(
-          onPressed: () {},
+          onPressed: () async {
+            var of = BlocProvider.of<BookingCubit>(context);
+            of.dateTime = DateTime(int.parse(appointment.year),
+                int.parse(appointment.month), int.parse(appointment.day));
+            of.yourApp = appointment.appointmentTime;
+            await of.getTimesForUpdateDoctor(
+                doctorid: appointment.dcotorid,
+                year: appointment.year,
+                day: appointment.day,
+                month: appointment.month);
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => BookingUpdateView(
+                  appDataModel: appointment,
+                ),
+              ),
+            );
+          },
           text: 'تعديل',
           textcolor: Colors.white,
           buttonColor: mainColor,

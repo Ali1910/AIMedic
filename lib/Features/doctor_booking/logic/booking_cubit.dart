@@ -10,11 +10,14 @@ class BookingCubit extends Cubit<BookingStates> {
 
   List<AppointmentDataModel> times = [];
   List<bool> timespicked = [];
+  List<bool> yourApponitment = [];
   final Dio dio = Dio();
   bool timePicked = false;
   late String appointmentTime;
   late int doctorid;
   late int timeid;
+  late DateTime dateTime;
+  late String yourApp;
 
   Future<void> getTimesForDoctor({
     required int doctorid,
@@ -43,6 +46,39 @@ class BookingCubit extends Cubit<BookingStates> {
     emit(BookingTimesLoadingSuccessState());
   }
 
+  Future<void> getTimesForUpdateDoctor({
+    required int doctorid,
+    required String year,
+    required String day,
+    required String month,
+  }) async {
+    if (state is BookingTimesLoadingState) {
+      return null;
+    }
+    times = [];
+    timespicked = [];
+    yourApponitment = [];
+    timePicked = false;
+
+    emit(BookingTimesLoadingState());
+    var response = await dio.get(
+        '$baseUrl/AppointmentContoller?doctorId=$doctorid&year=$year&month=$month&day=$day');
+
+    for (var element in response.data) {
+      AppointmentDataModel appointmentDataModel =
+          AppointmentDataModel.fromjson(element);
+      times.add(appointmentDataModel);
+      timespicked.add(false);
+      if (yourApp == appointmentDataModel.datetime) {
+        yourApponitment.add(true);
+      } else {
+        yourApponitment.add(false);
+      }
+    }
+
+    emit(BookingTimesLoadingSuccessState());
+  }
+
   Future<bool> bookAppointment(
       {required String appointmentTime,
       required int userid,
@@ -52,6 +88,23 @@ class BookingCubit extends Cubit<BookingStates> {
     try {
       await dio.post(
           '$baseUrl/AppointmentContoller?appointmentime=$appointmentTime&timeid=$timeid&UserId=$userid&doctorId=$doctorid');
+      emit(BookingSucessState());
+      return true;
+    } catch (ex) {
+      emit(BookingFailedState());
+      return false;
+    }
+  }
+
+  Future<bool> updateAppointment({
+    required String appointmentTime,
+    required int appoinmentId,
+    required int timeId,
+  }) async {
+    emit(BookingLoadingState());
+    try {
+      await dio.put(
+          '$baseUrl/AppointmentContoller?timeid=$timeId&AppointmentId=$appoinmentId&appointmentime=$appointmentTime');
       emit(BookingSucessState());
       return true;
     } catch (ex) {

@@ -31,13 +31,21 @@ class CustomTimeItem extends StatelessWidget {
                   of.timeid = appointmentDataModel.timeId;
                   of.doctorid = appointmentDataModel.doctorId;
                 }
-              : null,
+              : BlocProvider.of<BookingCubit>(context).yourApponitment[index]
+                  ? () {
+                      var of = BlocProvider.of<BookingCubit>(context);
+                      of.itempicked(index);
+                      of.timePicked = false;
+                    }
+                  : null,
           style: ElevatedButton.styleFrom(
             fixedSize: Size(120.w, 50.h),
             backgroundColor:
-                BlocProvider.of<BookingCubit>(context).timespicked[index]
-                    ? mainColor
-                    : Colors.white,
+                BlocProvider.of<BookingCubit>(context).yourApponitment[index]
+                    ? Colors.red
+                    : BlocProvider.of<BookingCubit>(context).timespicked[index]
+                        ? mainColor
+                        : Colors.white,
             side: appointmentDataModel.empty
                 ? BorderSide(
                     color: BlocProvider.of<BookingCubit>(context)
@@ -51,11 +59,16 @@ class CustomTimeItem extends StatelessWidget {
           child: Text(
             appointmentDataModel.datetime,
             style: Styles.styleBold16.copyWith(
-                color: appointmentDataModel.empty
-                    ? BlocProvider.of<BookingCubit>(context).timespicked[index]
-                        ? Colors.white
-                        : mainColor
-                    : Colors.grey.shade600),
+              color:
+                  BlocProvider.of<BookingCubit>(context).yourApponitment[index]
+                      ? Colors.white
+                      : appointmentDataModel.empty
+                          ? BlocProvider.of<BookingCubit>(context)
+                                  .timespicked[index]
+                              ? Colors.white
+                              : mainColor
+                          : Colors.grey.shade600,
+            ),
           ),
         );
       },
