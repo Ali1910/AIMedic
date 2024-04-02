@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,6 +8,7 @@ import 'package:gbsub/Core/networking/networking.dart';
 import 'package:gbsub/Core/services/sharedpref.dart';
 import 'package:gbsub/Features/Home/Ui/Home_view.dart';
 import 'package:gbsub/Features/Login/Ui/login_view.dart';
+import 'package:gbsub/Features/booking_history/logic/boking_history_cubit.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,9 +22,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) =>
-          NavagationbarCubit()..LoggedInfun(state: Sharedhelper.loggedIN),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => BookingHistroyCubit(dio: Dio()),
+        ),
+        BlocProvider(
+          create: (context) =>
+              NavagationbarCubit()..LoggedInfun(state: Sharedhelper.loggedIN),
+        ),
+      ],
       child: ScreenUtilInit(
         designSize: const Size(375, 812),
         splitScreenMode: true,
