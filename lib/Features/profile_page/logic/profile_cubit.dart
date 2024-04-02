@@ -14,8 +14,7 @@ class ProfileCubit extends Cubit<ProfileStates> {
 
   final Dio dio = Dio();
   Future<void> getprofiledetails(int id) async {
-    var response = await dio
-        .get('https://10.0.2.2:7093/api/User/GetPofileDetailes?id=${id}');
+    var response = await dio.get('$baseUrl/User/GetPofileDetailes?id=${id}');
     profileModel = ProfileModel.fromjson(response.data);
   }
 

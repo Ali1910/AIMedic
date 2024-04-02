@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gbsub/Core/utilts/constans.dart';
 import 'package:gbsub/Features/doctor_booking/data/Appointment_data_model_post.dart';
 import 'package:gbsub/Features/doctor_booking/logic/booking_states.dart';
 
@@ -30,7 +31,7 @@ class BookingCubit extends Cubit<BookingStates> {
 
     emit(BookingTimesLoadingState());
     var response = await dio.get(
-        'https://10.0.2.2:7093/api/AppointmentContoller?doctorId=$doctorid&year=$year&month=$month&day=$day');
+        '$baseUrl/AppointmentContoller?doctorId=$doctorid&year=$year&month=$month&day=$day');
 
     for (var element in response.data) {
       AppointmentDataModel appointmentDataModel =
@@ -50,7 +51,7 @@ class BookingCubit extends Cubit<BookingStates> {
     emit(BookingLoadingState());
     try {
       await dio.post(
-          'https://10.0.2.2:7093/api/AppointmentContoller?appointmentime=$appointmentTime&timeid=$timeid&UserId=$userid&doctorId=$doctorid');
+          '$baseUrl/AppointmentContoller?appointmentime=$appointmentTime&timeid=$timeid&UserId=$userid&doctorId=$doctorid');
       emit(BookingSucessState());
       return true;
     } catch (ex) {

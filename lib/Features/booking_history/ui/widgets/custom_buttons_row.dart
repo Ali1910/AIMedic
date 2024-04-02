@@ -28,11 +28,6 @@ class CustomBokkingItemButtonsRow extends StatelessWidget {
           onPressed: () async {
             await BlocProvider.of<BookingHistroyCubit>(context)
                 .deleteAppointments(appointment.id);
-            await BlocProvider.of<BookingCubit>(context).getTimesForDoctor(
-                doctorid: appointment.id,
-                year: appointment.year,
-                day: appointment.day,
-                month: appointment.month);
           },
           text: 'الغاء',
           textcolor: mainColor,

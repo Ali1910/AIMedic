@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gbsub/Core/utilts/constans.dart';
-import 'package:gbsub/Features/Login/Logic/cubit/loginstates.dart';
+import 'package:gbsub/Features/Login/Logic/loginstates.dart';
 import 'package:dio/dio.dart';
 
 class Logincubit extends Cubit<LoginStates> {
@@ -42,7 +42,7 @@ class Logincubit extends Cubit<LoginStates> {
   Future<bool> login(Dio dio) async {
     emit(LoginLoadingState());
     var response =
-        await dio.get('${baseurl}user?email=$email&password=$password');
+        await dio.get('$baseUrl/User?email=$email&password=$password');
     response.statusCode == 200 &&
             response.data ==
                 "Wrong email or passwrod try agin and make sure you entered the right password"

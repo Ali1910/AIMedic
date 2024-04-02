@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gbsub/Features/Login/Logic/cubit/LoginCubit.dart';
+import 'package:gbsub/Features/Login/Logic/LoginCubit.dart';
 import 'package:gbsub/Features/Login/Ui/login_view_body.dart';
 
 class LoginView extends StatelessWidget {

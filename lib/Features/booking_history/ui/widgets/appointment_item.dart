@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gbsub/Features/booking_history/data/appointment_data_model_dto.dart.dart';
 import 'package:gbsub/Features/booking_history/ui/widgets/custom_booking_item_doctor_info.dart';
@@ -7,7 +6,6 @@ import 'package:gbsub/Features/booking_history/ui/widgets/custom_buttons_row.dar
 import 'package:gbsub/Features/booking_history/ui/widgets/custom_contact_message_icon.dart';
 import 'package:gbsub/Features/booking_history/ui/widgets/custom_divider.dart';
 import 'package:gbsub/Features/booking_history/ui/widgets/custom_doctor_image.dart';
-import 'package:gbsub/Features/doctor_booking/logic/booking_cubit.dart';
 
 class CustomBookingHistoryItem extends StatelessWidget {
   const CustomBookingHistoryItem({
@@ -43,11 +41,8 @@ class CustomBookingHistoryItem extends StatelessWidget {
           SizedBox(
             height: 5.h,
           ),
-          BlocProvider(
-            create: (context) => BookingCubit(),
-            child: CustomBokkingItemButtonsRow(
-              appointment: appointmentDateModelDTO,
-            ),
+          CustomBokkingItemButtonsRow(
+            appointment: appointmentDateModelDTO,
           )
         ],
       ),

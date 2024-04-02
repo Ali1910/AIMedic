@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gbsub/Core/utilts/constans.dart';
 import 'package:gbsub/Features/SignUp/Logic/signup_states.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -155,7 +156,7 @@ class SignUpCubit extends Cubit<SignUpStates> {
       "city": city,
     });
     try {
-      var respon = await dio.post("https://10.0.2.2:7093/api/User", data: data);
+      var respon = await dio.post("$baseUrl/User", data: data);
       if (respon.statusCode == 200) {
         if (respon.statusCode == 200 && respon.data == "$email already eisxt") {
           return 0;
