@@ -41,7 +41,7 @@ class CustomBookingHistoryItem extends StatelessWidget {
           SizedBox(
             height: 5.h,
           ),
-          CustomBokkingItemButtonsRow(
+          CustomBookingItemButtonsRow(
             appointment: appointmentDateModelDTO,
           )
         ],

@@ -60,11 +60,11 @@ class CustomUpdatingElevatedbuttom extends StatelessWidget {
                       await BlocProvider.of<BookingHistroyCubit>(context)
                           .getAppointMents(
                               Sharedhelper.getintdata(intkey), false);
-                      of.getTimesForUpdateDoctor(
+                      of.getTimesForDoctor(
                           doctorid: of.doctorid,
-                          year: DateTime.now().year.toString(),
-                          day: DateTime.now().day.toString(),
-                          month: DateTime.now().month.toString());
+                          year: appointmentDateModelDTO.year,
+                          day: appointmentDateModelDTO.day,
+                          month: appointmentDateModelDTO.month);
                     } else {
                       customSnackBar(context,
                           ' لا يمكن تعديل الميعاد لنفس الميعاد او تعديله لموعد تملك به ميعاد اخر');

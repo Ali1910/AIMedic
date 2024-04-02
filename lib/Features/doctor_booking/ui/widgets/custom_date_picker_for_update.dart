@@ -18,11 +18,15 @@ class CustomDatePickerForUpdate extends StatelessWidget {
       initialDate: BlocProvider.of<BookingCubit>(context).dateTime,
       onDateChange: (selectedDate) {
         var of = BlocProvider.of<BookingCubit>(context);
+        of.year = selectedDate.year.toString();
+        of.day = selectedDate.day.toString();
+        of.month = selectedDate.month.toString();
         of.getTimesForDoctor(
-            doctorid: doctorid,
-            year: selectedDate.year.toString(),
-            day: selectedDate.day.toString(),
-            month: selectedDate.month.toString());
+          doctorid: doctorid,
+          year: of.year,
+          day: of.day,
+          month: of.month,
+        );
       },
       locale: "ar",
       activeColor: mainColor,

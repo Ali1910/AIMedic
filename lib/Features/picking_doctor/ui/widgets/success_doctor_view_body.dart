@@ -28,11 +28,11 @@ class SuccessDoctorViewBody extends StatelessWidget {
               ),
             );
             await BlocProvider.of<BookingCubit>(context).getTimesForDoctor(
-                doctorid:
-                    BlocProvider.of<DoctorCubit>(context).doctors[index].id,
-                year: DateTime.now().year.toString(),
-                day: DateTime.now().day.toString(),
-                month: DateTime.now().month.toString());
+              doctorid: BlocProvider.of<DoctorCubit>(context).doctors[index].id,
+              year: DateTime.now().year.toString(),
+              day: DateTime.now().day.toString(),
+              month: DateTime.now().month.toString(),
+            );
           },
           child: CustomDoctorItem(
               doctorDataModel:

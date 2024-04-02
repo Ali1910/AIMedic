@@ -9,8 +9,8 @@ import 'package:gbsub/Features/booking_history/ui/widgets/custom_dialog.dart';
 import 'package:gbsub/Features/doctor_booking/logic/booking_cubit.dart';
 import 'package:gbsub/Features/doctor_booking/ui/update_booking/booking_update_view.dart';
 
-class CustomBokkingItemButtonsRow extends StatelessWidget {
-  const CustomBokkingItemButtonsRow({
+class CustomBookingItemButtonsRow extends StatelessWidget {
+  const CustomBookingItemButtonsRow({
     super.key,
     required this.appointment,
   });
@@ -26,8 +26,8 @@ class CustomBokkingItemButtonsRow extends StatelessWidget {
             var of = BlocProvider.of<BookingCubit>(context);
             of.dateTime = DateTime(int.parse(appointment.year),
                 int.parse(appointment.month), int.parse(appointment.day));
-            of.yourApp = appointment.appointmentTime;
-            await of.getTimesForUpdateDoctor(
+
+            await of.getTimesForDoctor(
                 doctorid: appointment.dcotorid,
                 year: appointment.year,
                 day: appointment.day,

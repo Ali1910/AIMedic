@@ -54,10 +54,11 @@ class CustomBookingElevatedbuttom extends StatelessWidget {
                         ),
                       );
                       of.getTimesForDoctor(
-                          doctorid: of.doctorid,
-                          year: DateTime.now().year.toString(),
-                          day: DateTime.now().day.toString(),
-                          month: DateTime.now().month.toString());
+                        doctorid: of.doctorid,
+                        year: of.year,
+                        day: of.day,
+                        month: of.month,
+                      );
                     } else {
                       customSnackBar(context,
                           'أنت تملك ميعاد في نفس هذا التوقيت قم بتغير الميعاد');
