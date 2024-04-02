@@ -1,0 +1,44 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gbsub/Core/utilts/constans.dart';
+import 'package:gbsub/Features/booking_history/data/appointment_data_model_dto.dart.dart';
+import 'package:gbsub/Features/booking_history/logic/boking_history_cubit.dart';
+import 'package:gbsub/Features/booking_history/ui/widgets/custom_booking_item_button.dart';
+import 'package:gbsub/Features/doctor_booking/logic/booking_cubit.dart';
+
+class CustomBokkingItemButtonsRow extends StatelessWidget {
+  const CustomBokkingItemButtonsRow({
+    super.key,
+    required this.appointment,
+  });
+  final AppointmentDateModelDTO appointment;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        CustomBookingButton(
+          onPressed: () {},
+          text: 'تعديل',
+          textcolor: Colors.white,
+          buttonColor: mainColor,
+        ),
+        CustomBookingButton(
+          onPressed: () async {
+            await BlocProvider.of<BookingHistroyCubit>(context)
+                .deleteAppointments(appointment.id);
+            await BlocProvider.of<BookingCubit>(context).getTimesForDoctor(
+                doctorid: appointment.id,
+                year: appointment.year,
+                day: appointment.day,
+                month: appointment.month);
+          },
+          text: 'الغاء',
+          textcolor: mainColor,
+          buttonColor: Colors.white,
+        ),
+      ],
+    );
+  }
+}
