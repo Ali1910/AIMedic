@@ -30,6 +30,7 @@ class BookingCubit extends Cubit<BookingStates> {
     }
     times = [];
     timespicked = [];
+    yourApponitment = [];
     timePicked = false;
 
     emit(BookingTimesLoadingState());
@@ -41,6 +42,7 @@ class BookingCubit extends Cubit<BookingStates> {
           AppointmentDataModel.fromjson(element);
       times.add(appointmentDataModel);
       timespicked.add(false);
+      yourApponitment.add(false);
     }
 
     emit(BookingTimesLoadingSuccessState());
