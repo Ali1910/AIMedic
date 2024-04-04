@@ -26,11 +26,11 @@ class CustomBookingItemButtonsRow extends StatelessWidget {
           onPressed: () async {
             var of = BlocProvider.of<BookingCubit>(context);
             if (DateTime.now().month == int.parse(appointment.month) &&
-                int.parse(appointment.day) - DateTime.now().day == 0) {
+                int.parse(appointment.day) - DateTime.now().day <= 0) {
               String hour = appointment.appointmentTime.substring(0, 2);
               if (int.parse(hour) - DateTime.now().hour <= 1) {
                 customSnackBar(
-                    context, 'لا يمكن حذف هذا الميعاد نظرا لضيق الوقت');
+                    context, 'لا يمكن تعديل هذا الميعاد نظرا لضيق الوقت');
               } else {
                 await updateFunction(of, context);
               }
