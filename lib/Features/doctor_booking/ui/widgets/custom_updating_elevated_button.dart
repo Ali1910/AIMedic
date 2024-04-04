@@ -61,10 +61,11 @@ class CustomUpdatingElevatedbuttom extends StatelessWidget {
                           .getAppointMents(
                               Sharedhelper.getintdata(intkey), false);
                       of.getTimesForDoctor(
-                          doctorid: of.doctorid,
-                          year: appointmentDateModelDTO.year,
-                          day: appointmentDateModelDTO.day,
-                          month: appointmentDateModelDTO.month);
+                        doctorid: of.doctorid,
+                        year: of.year,
+                        day: of.day,
+                        month: of.month,
+                      );
                     } else {
                       customSnackBar(context,
                           ' لا يمكن تعديل الميعاد لنفس الميعاد او تعديله لموعد تملك به ميعاد اخر');

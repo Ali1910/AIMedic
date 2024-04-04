@@ -52,6 +52,7 @@ class BookingCubit extends Cubit<BookingStates> {
       required int userid,
       required int doctorid,
       required int timeid}) async {
+    if (state is BookingLoadingState) {}
     emit(BookingLoadingState());
     try {
       await dio.post(
@@ -69,7 +70,9 @@ class BookingCubit extends Cubit<BookingStates> {
     required int appoinmentId,
     required int timeId,
   }) async {
+    if (state is BookingLoadingState) {}
     emit(BookingLoadingState());
+
     try {
       await dio.put(
           '$baseUrl/AppointmentContoller?timeid=$timeId&AppointmentId=$appoinmentId&appointmentime=$appointmentTime');

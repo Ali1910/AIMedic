@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gbsub/Core/utilts/constans.dart';
 import 'package:gbsub/Core/utilts/style.dart';
-import 'package:gbsub/Features/booking_history/ui/booking_history_body_cancelled%20copy.dart';
+import 'package:gbsub/Features/booking_history/ui/booking_history_body_cancelled.dart';
 import 'package:gbsub/Features/booking_history/ui/booking_history_body_not_cancelled.dart';
 import 'package:gbsub/Features/booking_history/ui/widgets/custom_tab.dart';
 

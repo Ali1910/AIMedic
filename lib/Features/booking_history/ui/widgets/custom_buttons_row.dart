@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gbsub/Core/utilts/constans.dart';
+import 'package:gbsub/Core/utilts/widgets/custom_snack_bar.dart';
 import 'package:gbsub/Features/booking_history/data/appointment_data_model_dto.dart.dart';
 import 'package:gbsub/Features/booking_history/logic/boking_history_cubit.dart';
 import 'package:gbsub/Features/booking_history/ui/widgets/custom_booking_item_button.dart';
@@ -24,22 +25,18 @@ class CustomBookingItemButtonsRow extends StatelessWidget {
         CustomBookingButton(
           onPressed: () async {
             var of = BlocProvider.of<BookingCubit>(context);
-            of.dateTime = DateTime(int.parse(appointment.year),
-                int.parse(appointment.month), int.parse(appointment.day));
-
-            await of.getTimesForDoctor(
-                doctorid: appointment.dcotorid,
-                year: appointment.year,
-                day: appointment.day,
-                month: appointment.month);
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => BookingUpdateView(
-                  appDataModel: appointment,
-                ),
-              ),
-            );
+            if (DateTime.now().month == int.parse(appointment.month) &&
+                int.parse(appointment.day) - DateTime.now().day == 0) {
+              String hour = appointment.appointmentTime.substring(0, 2);
+              if (int.parse(hour) - DateTime.now().hour <= 1) {
+                customSnackBar(
+                    context, 'لا يمكن حذف هذا الميعاد نظرا لضيق الوقت');
+              } else {
+                await updateFunction(of, context);
+              }
+            } else {
+              await updateFunction(of, context);
+            }
           },
           text: 'تعديل',
           textcolor: Colors.white,
@@ -62,6 +59,25 @@ class CustomBookingItemButtonsRow extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+
+  Future<void> updateFunction(BookingCubit of, BuildContext context) async {
+    of.dateTime = DateTime(int.parse(appointment.year),
+        int.parse(appointment.month), int.parse(appointment.day));
+
+    await of.getTimesForDoctor(
+        doctorid: appointment.dcotorid,
+        year: appointment.year,
+        day: appointment.day,
+        month: appointment.month);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => BookingUpdateView(
+          appDataModel: appointment,
+        ),
+      ),
     );
   }
 }

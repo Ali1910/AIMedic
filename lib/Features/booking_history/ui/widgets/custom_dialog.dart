@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gbsub/Core/services/sharedpref.dart';
 import 'package:gbsub/Core/utilts/constans.dart';
+import 'package:gbsub/Core/utilts/widgets/custom_snack_bar.dart';
 import 'package:gbsub/Features/booking_history/data/appointment_data_model_dto.dart.dart';
 import 'package:gbsub/Features/booking_history/logic/boking_history_cubit.dart';
 import 'package:gbsub/Features/doctor_booking/logic/booking_cubit.dart';
@@ -24,8 +25,8 @@ class Customdialog extends StatelessWidget {
         textAlign: TextAlign.center,
       ),
       content: Text(
-        'تاكيد حذف الميعاد',
-        textAlign: TextAlign.start,
+        '!تاكيد حذف الميعاد',
+        textAlign: TextAlign.center,
         style: Styles.style14,
       ),
       actions: [
@@ -40,16 +41,22 @@ class Customdialog extends StatelessWidget {
         ),
         TextButton(
           onPressed: () async {
-            await BlocProvider.of<BookingHistroyCubit>(context)
-                .deleteAppointments(appointment.id);
-            Navigator.of(context).pop(
-                await BlocProvider.of<BookingHistroyCubit>(context)
-                    .getAppointMents(Sharedhelper.getintdata(intkey), false));
-            await BlocProvider.of<BookingCubit>(context).getTimesForDoctor(
-                doctorid: appointment.dcotorid,
-                year: appointment.year,
-                day: appointment.day,
-                month: appointment.month);
+            var of = BlocProvider.of<BookingHistroyCubit>(context);
+            bool checker = await of.deleteAppointments(appointment.id);
+            if (checker) {
+              Navigator.of(context).pop(await of.getAppointMents(
+                  Sharedhelper.getintdata(intkey), false));
+              var of2 = BlocProvider.of<BookingCubit>(context);
+              await of2.getTimesForDoctor(
+                  doctorid: appointment.dcotorid,
+                  year: of2.year,
+                  day: of2.day,
+                  month: of2.month);
+            } else {
+              customSnackBar(context, 'لا يمكن حذف هذا الميعاد نظرا لضيق الوقت',
+                  duration: 1500);
+              Navigator.of(context).pop();
+            }
           },
           child: Text(
             'نعم',
