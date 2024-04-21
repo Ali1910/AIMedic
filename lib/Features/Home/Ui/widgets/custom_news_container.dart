@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gbsub/Core/utilts/constans.dart';
 import 'package:gbsub/Core/utilts/style.dart';
+import 'package:gbsub/Features/news/ui/news_view.dart';
+import 'package:gbsub/Features/news/ui/news_view_body.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CustomNewsContainer extends StatelessWidget {
@@ -14,14 +16,14 @@ class CustomNewsContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Navigator.push(
-        //   context,
-        //   MaterialPageRoute(
-        //     builder: (context) {
-        //       return const NewsView();
-        //     },
-        //   ),
-        // );
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return const NewsView();
+            },
+          ),
+        );
       },
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 6.w, vertical: 6.h),

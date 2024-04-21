@@ -5,7 +5,8 @@ import 'package:gbsub/Features/Home/Ui/widgets/custom_body_continer_list_view.da
 import 'package:gbsub/Features/Home/Ui/widgets/custom_medication_info_list_view.dart';
 import 'package:gbsub/Features/Home/Ui/widgets/custom_news_container.dart';
 import 'package:gbsub/Features/Home/Ui/widgets/custom_tab_bar_list_view.dart';
-import 'package:gbsub/Features/Speciality/Ui/speciality_view.dart';
+import 'package:gbsub/Features/speciality_booking_doctor/Ui/speciality_view.dart';
+import 'package:gbsub/Features/speciality_contact_doctor/Ui/speciality_view.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({
@@ -35,8 +36,8 @@ class HomeViewBody extends StatelessWidget {
               text1: 'اختيار  طبيب',
               text2: 'محادثة طبيب',
               text3: 'تذكيرات',
-              widget1: SpecialityView(),
-              widget2: SpecialityView(),
+              widget1: SpecialityViewPicking(),
+              widget2: SpecialityViewContact(),
               widget3: Text('aa'),
             ),
             const CustomServiceRowCustomBodyContinerListView(

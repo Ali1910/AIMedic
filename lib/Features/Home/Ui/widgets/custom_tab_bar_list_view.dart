@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gbsub/Features/Home/Ui/widgets/custom_tab_bar_container.dart';
+import 'package:gbsub/Features/bmi/presenatation/views/BMIView.dart';
+import 'package:gbsub/Features/booking_history/ui/booking_history_view.dart';
 
 class CustomTabBar extends StatelessWidget {
   const CustomTabBar({
@@ -16,7 +18,7 @@ class CustomTabBar extends StatelessWidget {
           children: [
             Custombody(
               text: 'حاسبة معدل كتلة الجسم',
-              widget: Text('aa'),
+              widget: BmiView(),
             ),
             Custombody(
               text: 'اعدادات NFC',
@@ -28,7 +30,7 @@ class CustomTabBar extends StatelessWidget {
             ),
             Custombody(
               text: 'سجل الحجوزات',
-              widget: Text('aa'),
+              widget: BookingHistoryView(),
             ),
             Custombody(
               text: 'السجل المرضي',

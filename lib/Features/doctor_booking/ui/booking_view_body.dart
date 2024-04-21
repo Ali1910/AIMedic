@@ -6,7 +6,7 @@ import 'package:gbsub/Features/doctor_booking/ui/widgets/custom_date_picker.dart
 import 'package:gbsub/Features/doctor_booking/ui/widgets/custom_doctor_info_container.dart';
 import 'package:gbsub/Features/doctor_booking/ui/widgets/custom_time_item_list_view.dart';
 import 'package:gbsub/Features/doctor_booking/ui/widgets/custom_upper_body.dart';
-import 'package:gbsub/Features/picking_doctor/data/doctor_data_model.dart';
+import 'package:gbsub/Features/picking_doctor_booking/data/doctor_data_model.dart';
 
 class BookingViewBody extends StatelessWidget {
   const BookingViewBody({

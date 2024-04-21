@@ -8,8 +8,10 @@ import 'package:gbsub/Core/networking/networking.dart';
 import 'package:gbsub/Core/services/sharedpref.dart';
 import 'package:gbsub/Features/Home/Ui/Home_view.dart';
 import 'package:gbsub/Features/Login/Ui/login_view.dart';
+import 'package:gbsub/Features/bmi/presenatation/manager/BMICubit.dart';
 import 'package:gbsub/Features/booking_history/logic/boking_history_cubit.dart';
 import 'package:gbsub/Features/doctor_booking/logic/booking_cubit.dart';
+import 'package:gbsub/Features/news/logic/news_cubit.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,7 +36,10 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => BookingCubit(),
-        )
+        ),
+        BlocProvider(
+          create: (context) => BMICubit(),
+        ),
       ],
       child: ScreenUtilInit(
         designSize: const Size(375, 812),

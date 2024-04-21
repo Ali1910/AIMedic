@@ -1,15 +1,20 @@
+import 'package:gbsub/Core/utilts/widgets/custom_snack_bar.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-// void launchWhatsApp() async {
-//   // Change the phone number and message as needed
-//   String phoneNumber = '+201556997525'; // Include the country code
-//   String message = 'Hello, this is a test message from my Flutter app!';
+void launchWhatsApp(
+    {required String name,
+    required String phoneNumder,
+    required context}) async {
+  // Change the phone number and message as needed
+  String phoneNumber = '+2$phoneNumder'; // Include the country code
+  String message = 'أهلا دكتور $name';
 
-//   String url = 'https://wa.me/$phoneNumber?text=${Uri.parse(message)}';
+  String url = "whatsapp://send?phone=$phoneNumber&text=$message";
 
-//   if (await canLaunchUrl(Uri.parse(url))) {
-//     await launchUrl(Uri.parse(url));
-//   } else {
-//     // Handle error - unable to launch URL
-//     print('Could not launch WhatsApp');
-//   }
-// }
+  // Launch WhatsApp
+  if (await canLaunchUrl(Uri.parse(url))) {
+    await launchUrl(Uri.parse(url));
+  } else {
+    customSnackBar(context, 'لا يوجد واتس اب على جهازك', duration: 2000);
+  }
+}

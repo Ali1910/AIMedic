@@ -31,7 +31,7 @@ class CustomDatePickerForUpdate extends StatelessWidget {
       locale: "ar",
       activeColor: mainColor,
       headerProps: EasyHeaderProps(
-        monthPickerType: MonthPickerType.switcher,
+        monthPickerType: MonthPickerType.dropDown,
         selectedDateFormat: SelectedDateFormat.dayOnly,
         monthStyle: Styles.style16.copyWith(color: mainColor),
         selectedDateStyle: Styles.style16.copyWith(
