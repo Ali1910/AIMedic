@@ -1,21 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gbsub/Core/services/sharedpref.dart';
 import 'package:gbsub/Core/utilts/constans.dart';
 import 'package:gbsub/Core/utilts/widgets/custom_elevated_button_button.dart';
-import 'package:gbsub/Core/utilts/widgets/custom_snack_bar.dart';
-import 'package:gbsub/Features/Home/Ui/Home_view.dart';
+import 'package:gbsub/Features/perrsonal_details/logic/functions/phone_number_update_method.dart';
 import 'package:gbsub/Features/perrsonal_details/logic/peronal_details_state.dart';
 import 'package:gbsub/Features/perrsonal_details/logic/personal_details_cubit.dart';
-import 'package:gbsub/Features/profile_page/logic/profile_cubit.dart';
 import 'package:gbsub/core/utilts/style.dart';
 
 class UpdatePhoneNumberViewBody extends StatelessWidget {
-  const UpdatePhoneNumberViewBody(
-      {super.key, this.onChanged, this.onFieldSubmitted});
-  final void Function(String)? onChanged;
-  final void Function(String)? onFieldSubmitted;
+  const UpdatePhoneNumberViewBody({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -37,14 +33,18 @@ class UpdatePhoneNumberViewBody extends StatelessWidget {
                     textDirection: TextDirection.rtl,
                     keyboardType: TextInputType.phone,
                     onChanged: (p) {
-                      of.phonenumberchanged(p);
+                      of.phonenumberChanged(p);
                     },
-                    onFieldSubmitted: onFieldSubmitted,
+                    onFieldSubmitted: (p) {
+                      of.phonenumberChanged(p);
+                    },
                     validator: (value) {
                       if (value?.isEmpty ?? true) {
                         return 'هذا الحقل مطلوب';
                       } else if (!of.egyptPhoneRegExp.hasMatch(value!)) {
                         return 'رقم الهاتف خاطئ تاكد من صحته';
+                      } else {
+                        return null;
                       }
                     },
                     decoration: InputDecoration(
@@ -61,28 +61,17 @@ class UpdatePhoneNumberViewBody extends StatelessWidget {
                 ),
                 SliverFillRemaining(
                   hasScrollBody: false,
-                  child: Column(children: [
-                    const Spacer(),
-                    Customelevatedbutton(
-                      text: 'حفظ',
-                      onPressed: () async {
-                        if (of.formkey.currentState!.validate()) {
-                          await of.updatePhoneNumber();
-                          if (of.result == "تم تعديل رقم الهاتف بنجاح") {
-                            customSnackBar(context, of.result);
-                            Navigator.pushAndRemoveUntil(context,
-                                MaterialPageRoute(builder: (context) {
-                              return const HomeView();
-                            }), (Route<dynamic> route) => false);
-                          } else {
-                            customSnackBar(context, of.result);
-                          }
-                        } else {
-                          of.autovalidateMode = AutovalidateMode.always;
-                        }
-                      },
-                    ),
-                  ]),
+                  child: Column(
+                    children: [
+                      const Spacer(),
+                      Customelevatedbutton(
+                        text: 'حفظ',
+                        onPressed: () async {
+                          await phoneNumberUpdateMethod(of, context);
+                        },
+                      ),
+                    ],
+                  ),
                 )
               ],
             ),
