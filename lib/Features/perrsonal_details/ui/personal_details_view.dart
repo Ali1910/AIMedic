@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gbsub/Core/utilts/constans.dart';
 import 'package:gbsub/Core/utilts/style.dart';
 import 'package:gbsub/Features/perrsonal_details/ui/personal_details_view_body.dart';
 import 'package:gbsub/Features/profile_page/data/profile_model.dart';
+import 'package:gbsub/Features/profile_page/logic/profile_cubit.dart';
 
 class PersonalDetialsView extends StatelessWidget {
   const PersonalDetialsView({super.key, required this.profileModel});
@@ -10,21 +12,24 @@ class PersonalDetialsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Directionality(
-      textDirection: TextDirection.rtl,
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: mainColor,
-          elevation: 0,
-          centerTitle: true,
-          title: Text(
-            'بياناتك شخصية',
-            style: Styles.styleBold16.copyWith(color: Colors.white),
+    return BlocProvider(
+      create: (context) => ProfileCubit(),
+      child: Directionality(
+        textDirection: TextDirection.rtl,
+        child: Scaffold(
+          appBar: AppBar(
+            backgroundColor: mainColor,
+            elevation: 0,
+            centerTitle: true,
+            title: Text(
+              'بياناتك شخصية',
+              style: Styles.styleBold16.copyWith(color: Colors.white),
+            ),
+            iconTheme: const IconThemeData(color: Colors.white),
           ),
-          iconTheme: const IconThemeData(color: Colors.white),
-        ),
-        body: PersonalDetailsViewBody(
-          profileModel: profileModel,
+          body: PersonalDetailsViewBody(
+            profileModel: profileModel,
+          ),
         ),
       ),
     );
