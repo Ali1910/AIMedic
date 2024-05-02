@@ -21,7 +21,7 @@ class Logincubit extends Cubit<LoginStates> {
 
   void onEmailfeildchanged(String x) {
     email = x;
-    AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+
     emit(LoginChangedstate());
   }
 
@@ -31,7 +31,7 @@ class Logincubit extends Cubit<LoginStates> {
 
   void onPasswordfeildchanged(String x) {
     password = x;
-    AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+
     emit(LoginChangedstate());
   }
 
