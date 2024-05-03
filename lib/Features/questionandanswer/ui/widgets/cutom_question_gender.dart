@@ -6,7 +6,9 @@ import 'package:gbsub/core/utilts/style.dart';
 class CustomQuestionGender extends StatelessWidget {
   const CustomQuestionGender({
     super.key,
+    required this.gender,
   });
+  final String gender;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class CustomQuestionGender extends StatelessWidget {
           width: 5.w,
         ),
         Text(
-          'ذكر',
+          gender,
           style: Styles.style16.copyWith(color: mainColor),
         )
       ],

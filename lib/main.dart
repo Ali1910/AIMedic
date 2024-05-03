@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gbsub/Core/cubits/bottomnavigationbarcubit/Bottomnavigationbarcubit.dart';
+import 'package:gbsub/Core/cubits/main_cubit.dart';
 import 'package:gbsub/Core/networking/networking.dart';
 import 'package:gbsub/Core/services/sharedpref.dart';
 import 'package:gbsub/Features/Home/Ui/Home_view.dart';
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) =>
-              NavagationbarCubit()..LoggedInfun(state: Sharedhelper.loggedIN),
+              MainCubit()..loggedInfun(state: Sharedhelper.loggedIN),
         ),
         BlocProvider(
           create: (context) => BookingCubit(),
@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
         minTextAdapt: true,
         builder: (context, child) => MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: BlocProvider.of<NavagationbarCubit>(context).loggedin
+          home: BlocProvider.of<MainCubit>(context).loggedin
               ? const HomeView()
               : const LoginView(),
         ),

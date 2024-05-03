@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:gbsub/Core/cubits/bottomnavigationbarcubit/Bottomnavigationbarcubit.dart';
-import 'package:gbsub/Core/cubits/bottomnavigationbarcubit/Bottomnavigationvarstates.dart';
+import 'package:gbsub/Core/cubits/main_cubit.dart';
+import 'package:gbsub/Core/cubits/main_states.dart';
 import 'package:gbsub/Core/utilts/constans.dart';
 import 'package:gbsub/Core/utilts/style.dart';
 
@@ -14,7 +14,7 @@ class CustomBottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<NavagationbarCubit, BottomNavigationBarStates>(
+    return BlocBuilder<MainCubit, MainStates>(
       builder: (context, state) {
         return BottomNavigationBar(
           selectedLabelStyle: Styles.style13,
@@ -26,10 +26,9 @@ class CustomBottomNavBar extends StatelessWidget {
           unselectedItemColor: Colors.black,
           type: BottomNavigationBarType.fixed,
           onTap: (index) {
-            BlocProvider.of<NavagationbarCubit>(context).tapped(index);
+            BlocProvider.of<MainCubit>(context).tapped(index);
           },
-          currentIndex:
-              BlocProvider.of<NavagationbarCubit>(context).currentIndex,
+          currentIndex: BlocProvider.of<MainCubit>(context).currentIndex,
           items: const [
             BottomNavigationBarItem(
               icon: Icon(
