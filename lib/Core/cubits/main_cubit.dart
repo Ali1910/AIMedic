@@ -70,6 +70,7 @@ class MainCubit extends Cubit<MainStates> {
 
   Future<bool> postQUestion(int userId) async {
     final dio = Dio();
+    publicquestions = true;
     try {
       emit(FetchingQuestionLoading());
       dio.post('$baseUrl/Question?content=$question&User=$userId');

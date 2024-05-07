@@ -7,44 +7,24 @@ import 'package:gbsub/core/utilts/style.dart';
 class CustomDoctorAnswer extends StatelessWidget {
   const CustomDoctorAnswer({
     super.key,
+    required this.id,
   });
+  final int id;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(40.w),
-          child: Image.asset(
-            'assets/images/profile.png',
-            width: 50.w,
-          ),
-        ),
-        SizedBox(
-          width: 5.w,
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'أجاب السؤال',
-              style: Styles.style14,
-            ),
-            Text(
-              'دكتور علي هاني علي',
-              style: Styles.style14,
-            ),
-          ],
-        ),
-        SizedBox(
-          width: 15.w,
-        ),
         Row(
           children: [
             Text(
               'إجابة السؤال',
               style: Styles.style14.copyWith(color: mainColor),
+            ),
+            SizedBox(
+              width: 20.w,
             ),
             IconButton(
               onPressed: () {},
