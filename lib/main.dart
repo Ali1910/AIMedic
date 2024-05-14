@@ -11,7 +11,6 @@ import 'package:gbsub/Features/Login/Ui/login_view.dart';
 import 'package:gbsub/Features/bmi/presenatation/manager/BMICubit.dart';
 import 'package:gbsub/Features/booking_history/logic/boking_history_cubit.dart';
 import 'package:gbsub/Features/doctor_booking/logic/booking_cubit.dart';
-import 'package:gbsub/Features/news/logic/news_cubit.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

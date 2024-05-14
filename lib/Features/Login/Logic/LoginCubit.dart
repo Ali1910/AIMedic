@@ -44,8 +44,7 @@ class Logincubit extends Cubit<LoginStates> {
     var response =
         await dio.get('$baseUrl/User?email=$email&password=$password');
     response.statusCode == 200 &&
-            response.data ==
-                "Wrong email or passwrod try agin and make sure you entered the right password"
+            response.data == "Wrong email or passwrod try again"
         ? loginState = false
         : loginState = true;
     if (loginState) {

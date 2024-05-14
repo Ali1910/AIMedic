@@ -7,7 +7,6 @@ import 'package:gbsub/Core/cubits/main_states.dart';
 import 'package:gbsub/Core/services/sharedpref.dart';
 import 'package:gbsub/Core/utilts/constans.dart';
 import 'package:gbsub/Features/Home/Ui/home_body_view.dart';
-import 'package:gbsub/Features/doctor_booking/logic/booking_cubit.dart';
 import 'package:gbsub/Features/profile_page/ui/profile_view.dart';
 import 'package:gbsub/Features/questionandanswer/data/question.dart';
 import 'package:gbsub/Features/questionandanswer/ui/question_and_answer_view_body.dart';
@@ -16,12 +15,14 @@ class MainCubit extends Cubit<MainStates> {
   MainCubit() : super(InitialState());
   int currentIndex = 0;
   bool loggedin = false;
+
   List<Widget> bottomnavigationbarviews = [
     const HomeViewBody(),
     const HomeViewBody(),
     const QuestionAndAnswerViewBody(),
     const ProfileView()
   ];
+
   void tapped(int index) {
     currentIndex = index;
     emit(TappedState());

@@ -5,6 +5,7 @@ import 'package:gbsub/Features/Home/Ui/widgets/custom_body_continer_list_view.da
 import 'package:gbsub/Features/Home/Ui/widgets/custom_medication_info_list_view.dart';
 import 'package:gbsub/Features/Home/Ui/widgets/custom_news_container.dart';
 import 'package:gbsub/Features/Home/Ui/widgets/custom_tab_bar_list_view.dart';
+import 'package:gbsub/Features/diagnosis/ui/diagnosis_view.dart';
 import 'package:gbsub/Features/speciality_booking_doctor/Ui/speciality_view.dart';
 import 'package:gbsub/Features/speciality_contact_doctor/Ui/speciality_view.dart';
 
@@ -48,7 +49,7 @@ class HomeViewBody extends StatelessWidget {
               text1: 'تشخيص',
               text2: 'تنبؤات',
               text3: 'تعارضات ادوية ',
-              widget1: Text('aa'),
+              widget1: DiagnosisView(),
               widget2: Text('aa'),
               widget3: Text('aa'),
             ),
