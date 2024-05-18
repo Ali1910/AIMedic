@@ -4,8 +4,8 @@ import 'package:gbsub/Core/cubits/main_cubit.dart';
 import 'package:gbsub/Core/cubits/main_states.dart';
 import 'package:gbsub/Core/utilts/constans.dart';
 import 'package:gbsub/Core/utilts/style.dart';
-import 'package:gbsub/Features/diagnosis/logic/diagnosis_cubit.dart';
-import 'package:gbsub/Features/diagnosis/ui/diagnosis_view_body.dart';
+import 'package:gbsub/Features/body_parts/logic/diagnosis_cubit.dart';
+import 'package:gbsub/Features/body_parts/ui/diagnosis_view_body.dart';
 
 class DiagnosisView extends StatelessWidget {
   const DiagnosisView({super.key});
