@@ -3,8 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gbsub/Core/utilts/constans.dart';
 import 'package:gbsub/Features/medical_advices/data/medical_advice_model.dart';
 import 'package:gbsub/Features/medical_advices/ui/widgets/custom.doctor_info.dart';
-import 'package:gbsub/Features/medical_advices/ui/widgets/custom_delete_icon.dart';
-
 import 'custom_content_element.dart';
 import 'custom_image_element.dart';
 

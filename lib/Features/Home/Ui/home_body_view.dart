@@ -6,6 +6,7 @@ import 'package:gbsub/Features/Home/Ui/widgets/custom_medication_info_list_view.
 import 'package:gbsub/Features/Home/Ui/widgets/custom_news_container.dart';
 import 'package:gbsub/Features/Home/Ui/widgets/custom_tab_bar_list_view.dart';
 import 'package:gbsub/Features/body_parts/ui/diagnosis_view.dart';
+import 'package:gbsub/Features/diabetes_preidiction/ui/diabetes_view.dart';
 import 'package:gbsub/Features/speciality_booking_doctor/Ui/speciality_view.dart';
 import 'package:gbsub/Features/speciality_contact_doctor/Ui/speciality_view.dart';
 
@@ -44,13 +45,13 @@ class HomeViewBody extends StatelessWidget {
             const CustomServiceRowCustomBodyContinerListView(
               mainText: 'خدماتنا الالكترونية',
               icon1: FontAwesomeIcons.personDotsFromLine,
-              icon2: FontAwesomeIcons.disease,
+              icon2: FontAwesomeIcons.glassWaterDroplet,
               icon3: FontAwesomeIcons.capsules,
               text1: 'تشخيص',
-              text2: 'تنبؤات',
+              text2: 'سكر الدم',
               text3: 'تعارضات ادوية ',
               widget1: DiagnosisView(),
-              widget2: Text('aa'),
+              widget2: DiabetesView(),
               widget3: Text('aa'),
             ),
             const CustomNewsContainer(),

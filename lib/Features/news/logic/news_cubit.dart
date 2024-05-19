@@ -11,14 +11,14 @@ class NewsCubit extends Cubit<NeWsStates> {
   bool imageNotload = true;
 
   Future<List<ArticalModel>> getMedicalNews() async {
+    const String url = 'https://newsapi.org/v2/top-headlines';
+    final Map<String, dynamic> queryParameters = {
+      'country': 'us',
+      'category': 'health',
+      'apiKey': '638a8092b9fa4d139e1d4ad0dee76a36'
+    };
     emit(LoadingState());
-    Response response = await dio.get(
-      'https://newsapi.org/v2/top-headlines?country=us&apiKey=c4c64b07d449441ba98ec6107ca8ed8b&category=health',
-    );
-    // .timeout(
-    //   const Duration(seconds: 5),
-    // );
-
+    var response = await dio.get(url, queryParameters: queryParameters);
     Map<String, dynamic> jsonDate = response.data;
     List<dynamic> articles = jsonDate['articles'];
     List<ArticalModel> articlesList = [];

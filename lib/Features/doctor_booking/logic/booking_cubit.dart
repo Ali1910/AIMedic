@@ -26,9 +26,7 @@ class BookingCubit extends Cubit<BookingStates> {
     required String day,
     required String month,
   }) async {
-    if (state is BookingTimesLoadingState) {
-      return null;
-    }
+    if (state is BookingTimesLoadingState) {}
     times = [];
     timespicked = [];
     timePicked = false;

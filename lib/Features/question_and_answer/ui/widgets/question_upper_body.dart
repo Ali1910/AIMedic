@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gbsub/Core/utilts/constans.dart';
-import 'package:gbsub/Features/questionandanswer/ui/widgets/adding_question_view_body.dart';
+import 'package:gbsub/Features/question_and_answer/ui/widgets/adding_question_view_body.dart';
 import 'package:gbsub/core/utilts/style.dart';
 
 class QuestionUpperBody extends StatelessWidget {

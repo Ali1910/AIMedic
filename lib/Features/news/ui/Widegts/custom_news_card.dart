@@ -41,26 +41,22 @@ class CustomNewsCard extends StatelessWidget {
               BlocBuilder<NewsCubit, NeWsStates>(
                 builder: (context, state) {
                   return ClipRRect(
-                    borderRadius: BorderRadius.circular(6),
-                    child: articalModel.image == 'null'
-                        ? CachedNetworkImage(
-                            imageUrl: articalModel.image!,
-                            fit: BoxFit.cover,
-                            placeholder: (context, url) => Padding(
-                              padding: const EdgeInsets.all(16.0),
-                              child: Center(
-                                child: CircularProgressIndicator(
-                                  color: mainColor,
-                                ),
-                              ),
+                      borderRadius: BorderRadius.circular(6),
+                      child: CachedNetworkImage(
+                        imageUrl: articalModel.image!,
+                        fit: BoxFit.cover,
+                        placeholder: (context, url) => Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Center(
+                            child: CircularProgressIndicator(
+                              color: mainColor,
                             ),
-                            errorWidget: (context, url, error) =>
-                                const Icon(Icons.error),
-                            width: double.infinity,
-                          )
-                        : Image.asset('assets/images/news.jpeg',
-                            fit: BoxFit.fill),
-                  );
+                          ),
+                        ),
+                        errorWidget: (context, url, error) =>
+                            const Icon(Icons.error),
+                        width: double.infinity,
+                      ));
                 },
               ),
               SizedBox(

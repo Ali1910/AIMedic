@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gbsub/Core/utilts/constans.dart';
-import 'package:gbsub/Core/utilts/style.dart';
 import 'package:gbsub/Features/SignUp/Logic/signup_cubit.dart';
 import 'package:gbsub/Features/SignUp/Ui/signup_view_body.dart';
 

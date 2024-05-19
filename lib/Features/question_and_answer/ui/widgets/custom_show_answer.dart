@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gbsub/Core/utilts/constans.dart';
+import 'package:gbsub/Features/answer/ui/answer_view.dart';
 import 'package:gbsub/core/utilts/style.dart';
 
 class CustomDoctorAnswer extends StatelessWidget {
@@ -27,7 +28,16 @@ class CustomDoctorAnswer extends StatelessWidget {
               width: 20.w,
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return AnswerView(id: id);
+                    },
+                  ),
+                );
+              },
               icon: Icon(
                 FontAwesomeIcons.arrowLeft,
                 size: 20.w,

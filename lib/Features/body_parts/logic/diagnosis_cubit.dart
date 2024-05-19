@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gbsub/Core/utilts/constans.dart';
 import 'package:gbsub/Features/body_parts/data/body_part_model.dart';
-import 'package:gbsub/Features/syptoms_for_body_part/data/symptoms_model.dart';
 import 'package:gbsub/Features/body_parts/logic/diagnosis_states.dart';
 
 class DiagnosisCubit extends Cubit<DiagnosisStates> {

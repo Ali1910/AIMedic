@@ -12,10 +12,11 @@ class CustomImageElement extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(120.w),
+      borderRadius: BorderRadius.circular(60.w),
       child: Image.network(
         '$imageUrl$image',
         width: 60.w,
+        height: 60.h,
         fit: BoxFit.contain,
       ),
     );

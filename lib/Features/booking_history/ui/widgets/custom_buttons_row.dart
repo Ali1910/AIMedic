@@ -86,13 +86,13 @@ class CustomBookingItemButtonsRow extends StatelessWidget {
         day: appointment.day,
         month: appointment.month);
 
-    Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(
-          builder: (context) => BookingUpdateView(
-            appDataModel: appointment,
-          ),
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => BookingUpdateView(
+          appDataModel: appointment,
         ),
-        (route) => false);
+      ),
+    );
   }
 }

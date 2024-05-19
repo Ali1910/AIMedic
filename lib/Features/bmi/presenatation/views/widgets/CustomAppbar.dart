@@ -16,7 +16,7 @@ class CustomAppbar extends StatelessWidget implements PreferredSize {
       centerTitle: true,
       title: Text(
         title,
-        style: Styles.styleBold16.copyWith(color: mainColor),
+        style: Styles.styleBold24.copyWith(color: mainColor),
       ),
       iconTheme: IconThemeData(color: mainColor),
     );

@@ -24,7 +24,6 @@ class CutomUpdatePasswordTextFormFeild extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       textDirection: TextDirection.rtl,
-      keyboardType: TextInputType.phone,
       onChanged: onChanged,
       onFieldSubmitted: onFieldSubmitted,
       validator: validator,

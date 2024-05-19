@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gbsub/Core/utilts/constans.dart';
-
+import 'package:gbsub/Features/bmi/presenatation/views/widgets/CustomAppbar.dart';
 import 'package:gbsub/Features/syptoms_for_body_part/logic/syptoms_cubit.dart';
 import 'package:gbsub/Features/syptoms_for_body_part/ui/syptoms_view_body.dart';
 
@@ -16,9 +15,7 @@ class SyptomsView extends StatelessWidget {
       child: Directionality(
         textDirection: TextDirection.rtl,
         child: Scaffold(
-          appBar: AppBar(
-            iconTheme: IconThemeData(color: mainColor),
-          ),
+          appBar: const CustomAppbar(title: 'الأعراض'),
           body: SyptomsViewBody(id: id),
         ),
       ),

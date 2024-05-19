@@ -6,9 +6,9 @@ import 'package:gbsub/Core/cubits/main_cubit.dart';
 import 'package:gbsub/Core/cubits/main_states.dart';
 import 'package:gbsub/Core/utilts/constans.dart';
 import 'package:gbsub/Core/utilts/style.dart';
-import 'package:gbsub/Features/questionandanswer/ui/widgets/custom_custom_question_item_list_view.dart';
-import 'package:gbsub/Features/questionandanswer/ui/widgets/custom_tab_bar.dart';
-import 'package:gbsub/Features/questionandanswer/ui/widgets/question_upper_body.dart';
+import 'package:gbsub/Features/question_and_answer/ui/widgets/custom_custom_question_item_list_view.dart';
+import 'package:gbsub/Features/question_and_answer/ui/widgets/custom_tab_bar.dart';
+import 'package:gbsub/Features/question_and_answer/ui/widgets/question_upper_body.dart';
 
 class QuestionAndAnswerViewBody extends StatelessWidget {
   const QuestionAndAnswerViewBody({super.key});

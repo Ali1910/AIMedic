@@ -83,7 +83,7 @@ class SignUpCubit extends Cubit<SignUpStates> {
   }
 
   void validationchage() {
-    AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+    autovalidateMode = AutovalidateMode.disabled;
     emit(ValueChangestate());
   }
 

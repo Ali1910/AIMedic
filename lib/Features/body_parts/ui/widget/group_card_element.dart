@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gbsub/Core/utilts/constans.dart';
 import 'package:gbsub/Core/utilts/style.dart';
-import 'package:gbsub/Features/syptoms_for_body_part/ui/syptoms_view_dart.dart';
+import 'package:gbsub/Features/syptoms_for_body_part/ui/syptoms_view.dart';
 
 class GroupCardELement extends StatelessWidget {
   const GroupCardELement({
