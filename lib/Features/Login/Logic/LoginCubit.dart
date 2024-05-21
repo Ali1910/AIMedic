@@ -1,11 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gbsub/Core/services/sharedpref.dart';
 import 'package:gbsub/Core/utilts/constans.dart';
+
 import 'package:gbsub/Features/Login/Logic/loginstates.dart';
-import 'package:dio/dio.dart';
+
+import 'package:gbsub/Features/Login/data/repo/login_repo.dart';
 
 class Logincubit extends Cubit<LoginStates> {
-  Logincubit() : super(LoginInitialstate());
+  Logincubit(this.loginRepo) : super(LoginInitialstate());
+  final LoginRepo loginRepo;
 
   late String email;
   late String password;
@@ -39,22 +43,18 @@ class Logincubit extends Cubit<LoginStates> {
     password = x!;
   }
 
-  Future<bool> login(Dio dio) async {
+  Future<void> login({required emial, required password}) async {
     emit(LoginLoadingState());
-    var response =
-        await dio.get('$baseUrl/User?email=$email&password=$password');
-    response.statusCode == 200 &&
-            response.data == "Wrong email or passwrod try again"
-        ? loginState = false
-        : loginState = true;
-    if (loginState) {
-      id = response.data;
-      emit(LoginSuccessed());
-
-      return true;
-    } else {
-      emit(Loginfailed());
-      return false;
-    }
+    var response = await loginRepo.login(email: email, password: password);
+    response.fold(
+      (failure) {
+        emit(Loginfailed(failure.errMessage));
+      },
+      (success) {
+        emit(LoginSuccessed());
+        Sharedhelper.putIntdata(intkey, success);
+        Sharedhelper.putBooldata(boolkey, true);
+      },
+    );
   }
 }

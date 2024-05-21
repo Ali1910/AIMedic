@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gbsub/Core/cubits/main_cubit.dart';
+import 'package:gbsub/Core/cubits/main_states.dart';
 import 'package:gbsub/Core/utilts/constans.dart';
 import 'package:gbsub/Core/utilts/style.dart';
 import 'package:gbsub/Core/utilts/widgets/custom_elevated_button_button.dart';
-import 'package:gbsub/Features/bmi/presenatation/manager/BMICubit.dart';
-import 'package:gbsub/Features/bmi/presenatation/manager/BMIStates.dart';
 import 'package:gbsub/Features/bmi/presenatation/views/widgets/CustomGenderConatinerBMI.dart';
 import 'package:gbsub/Features/bmi/presenatation/views/widgets/CustomSlider.dart';
 import 'package:gbsub/Features/bmi/presenatation/views/widgets/CustomWeight&AgeContainer.dart';
@@ -17,7 +17,7 @@ class BmiViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: BlocBuilder<BMICubit, BMIStates>(
+      child: BlocBuilder<MainCubit, MainStates>(
         builder: (context, state) {
           return Column(
             children: [
@@ -27,23 +27,23 @@ class BmiViewBody extends StatelessWidget {
                 children: [
                   CustomGenderContainerBMI(
                     text: 'ذكر',
-                    color: BlocProvider.of<BMICubit>(context).male
+                    color: BlocProvider.of<MainCubit>(context).male
                         ? Colors.blue
                         : mainColor,
                     onTap: () {
-                      BlocProvider.of<BMICubit>(context).maletapped();
-                      BlocProvider.of<BMICubit>(context).genderNotchecked =
+                      BlocProvider.of<MainCubit>(context).maletapped();
+                      BlocProvider.of<MainCubit>(context).genderNotchecked =
                           true;
                     },
                   ),
                   CustomGenderContainerBMI(
                     text: 'أنثى',
-                    color: BlocProvider.of<BMICubit>(context).female
+                    color: BlocProvider.of<MainCubit>(context).female
                         ? Colors.pink
                         : mainColor,
                     onTap: () {
-                      BlocProvider.of<BMICubit>(context).femaleTapped();
-                      BlocProvider.of<BMICubit>(context).genderNotchecked =
+                      BlocProvider.of<MainCubit>(context).femaleTapped();
+                      BlocProvider.of<MainCubit>(context).genderNotchecked =
                           true;
                     },
                   ),
@@ -54,9 +54,9 @@ class BmiViewBody extends StatelessWidget {
               ),
               CustomSlider(
                 onChanged: (v) {
-                  BlocProvider.of<BMICubit>(context).sliderslided(v);
+                  BlocProvider.of<MainCubit>(context).sliderslided(v);
                 },
-                value: BlocProvider.of<BMICubit>(context).slidervalue,
+                value: BlocProvider.of<MainCubit>(context).slidervalue,
               ),
               SizedBox(
                 height: 20.h,
@@ -67,24 +67,24 @@ class BmiViewBody extends StatelessWidget {
                   CustomWeightAgeConatiner(
                     text: 'حدد وزنك',
                     incrementonPressed: () {
-                      BlocProvider.of<BMICubit>(context).incrementweight();
+                      BlocProvider.of<MainCubit>(context).incrementweight();
                     },
                     decrementonPressed: () {
-                      BlocProvider.of<BMICubit>(context).decrementweight();
+                      BlocProvider.of<MainCubit>(context).decrementweight();
                     },
-                    value: BlocProvider.of<BMICubit>(context)
+                    value: BlocProvider.of<MainCubit>(context)
                         .initialWeightValue
                         .toString(),
                   ),
                   CustomWeightAgeConatiner(
                     text: 'حدد عمرك',
                     incrementonPressed: () {
-                      BlocProvider.of<BMICubit>(context).incrementAge();
+                      BlocProvider.of<MainCubit>(context).incrementAge();
                     },
                     decrementonPressed: () {
-                      BlocProvider.of<BMICubit>(context).decrementAge();
+                      BlocProvider.of<MainCubit>(context).decrementAge();
                     },
-                    value: BlocProvider.of<BMICubit>(context)
+                    value: BlocProvider.of<MainCubit>(context)
                         .initialAgeValue
                         .toString(),
                   ),
@@ -96,12 +96,12 @@ class BmiViewBody extends StatelessWidget {
               Customelevatedbutton(
                   text: 'احسب',
                   onPressed: () {
-                    if (BlocProvider.of<BMICubit>(context).genderChecked()) {
-                      BlocProvider.of<BMICubit>(context).calculateBMI(
-                          BlocProvider.of<BMICubit>(context)
+                    if (BlocProvider.of<MainCubit>(context).genderChecked()) {
+                      BlocProvider.of<MainCubit>(context).calculateBMI(
+                          BlocProvider.of<MainCubit>(context)
                               .initialWeightValue
                               .toDouble(),
-                          BlocProvider.of<BMICubit>(context)
+                          BlocProvider.of<MainCubit>(context)
                               .slidervalue
                               .toDouble());
                       showModalBottomSheet(
@@ -109,7 +109,7 @@ class BmiViewBody extends StatelessWidget {
                           builder: (context) {
                             return Center(
                               child: Text(
-                                'your BMI is ${BlocProvider.of<BMICubit>(context).yourBmI.toInt().toString()}',
+                                'your BMI is ${BlocProvider.of<MainCubit>(context).yourBmI.toInt().toString()}',
                                 style: Styles.styleBold24
                                     .copyWith(color: mainColor),
                               ),

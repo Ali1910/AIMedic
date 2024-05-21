@@ -10,4 +10,7 @@ class ObscureChangedstate extends LoginStates {}
 
 class LoginSuccessed extends LoginStates {}
 
-class Loginfailed extends LoginStates {}
+class Loginfailed extends LoginStates {
+  final String error;
+  Loginfailed(this.error);
+}

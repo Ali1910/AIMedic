@@ -26,11 +26,16 @@ class HealthAdvice {
 class Doctor {
   final String doctorName;
   final String doctorPic;
-  Doctor({required this.doctorName, required this.doctorPic});
+  final int doctorid;
+  Doctor(
+      {required this.doctorid,
+      required this.doctorName,
+      required this.doctorPic});
   factory Doctor.json(json) {
     return Doctor(
       doctorPic: json['profilePic'],
       doctorName: json['name'],
+      doctorid: json['id'],
     );
   }
 }

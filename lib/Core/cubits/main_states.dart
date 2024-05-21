@@ -19,3 +19,13 @@ class FetchingQuestionFailing extends MainStates {}
 class PublicQuestionTapped extends MainStates {}
 
 class Myquestionstapped extends MainStates {}
+
+class BMIInitialState extends MainStates {}
+
+class BMIGenderTapped extends MainStates {}
+
+class BMISliderSlided extends MainStates {}
+
+class BMIIncremet extends MainStates {}
+
+class BMIdecremet extends MainStates {}

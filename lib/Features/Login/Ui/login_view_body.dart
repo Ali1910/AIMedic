@@ -1,8 +1,6 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gbsub/Core/services/sharedpref.dart';
 import 'package:gbsub/Core/utilts/constans.dart';
 import 'package:gbsub/Core/utilts/widgets/custom_snack_bar.dart';
 import 'package:gbsub/Features/Home/Ui/Home_view.dart';
@@ -22,7 +20,7 @@ class LoginViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<Logincubit, LoginStates>(
+    return BlocConsumer<Logincubit, LoginStates>(
       builder: (context, state) {
         var of = BlocProvider.of<Logincubit>(context);
         return Form(
@@ -81,32 +79,15 @@ class LoginViewBody extends StatelessWidget {
                   state is LoginLoadingState
                       ? Center(
                           child: CircularProgressIndicator(
-                          color: mainColor,
-                        ))
+                            color: mainColor,
+                          ),
+                        )
                       : Customelevatedbutton(
                           text: 'تسجيل الدخول',
                           onPressed: () async {
                             if (of.formkey.currentState!.validate()) {
-                              var bool = await of.login(Dio());
-                              if (bool) {
-                                customSnackBar(
-                                    context, 'تم ستجيل الدخول بنجاح اهلا بك');
-                                Sharedhelper.putBooldata(boolkey, true);
-                                Sharedhelper.putIntdata(intkey, of.id);
-
-                                // ignore: use_build_context_synchronously
-                                Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) {
-                                      return const HomeView();
-                                    },
-                                  ),
-                                );
-                              } else {
-                                customSnackBar(context,
-                                    'خطأ في تسجيل الدخول حاول مرة وتأكد من صحة كلمة السر والايميل');
-                              }
+                              await of.login(
+                                  emial: of.email, password: of.password);
                             } else {
                               of.autovalidateMode = AutovalidateMode.always;
                             }
@@ -125,6 +106,21 @@ class LoginViewBody extends StatelessWidget {
             ),
           ),
         );
+      },
+      listener: (BuildContext context, LoginStates state) {
+        if (state is Loginfailed) {
+          customSnackBar(context, state.error, duration: 1000);
+        } else if (state is LoginSuccessed) {
+          customSnackBar(context, 'تم تسجيل الدخول بنجاح');
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return const HomeView();
+              },
+            ),
+          );
+        }
       },
     );
   }
