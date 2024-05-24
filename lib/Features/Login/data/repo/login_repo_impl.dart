@@ -16,7 +16,6 @@ class LoginRepoImpl extends LoginRepo {
       return right(data.data);
     } on Exception catch (e) {
       if (e is DioException) {
-        print(e.type);
         return left(ServerFailure.fromdioException(e));
       } else {
         return left(

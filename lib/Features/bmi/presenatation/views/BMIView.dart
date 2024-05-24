@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:gbsub/Features/bmi/presenatation/views/BMIViewBody.dart';
-import 'package:gbsub/Features/bmi/presenatation/views/widgets/CustomAppbar.dart';
+import 'package:gbsub/Core/utilts/widgets/CustomAppbar.dart';
 
 class BmiView extends StatelessWidget {
   const BmiView({super.key});

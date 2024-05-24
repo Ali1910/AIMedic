@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gbsub/Core/utilts/constans.dart';
+import 'package:gbsub/Core/utilts/style.dart';
 import 'package:gbsub/Features/doctor_booking/logic/booking_cubit.dart';
 import 'package:gbsub/Features/doctor_booking/ui/booking_view.dart';
 
@@ -13,41 +15,48 @@ class SuccessDoctorViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      itemBuilder: (BuildContext context, int index) {
-        return GestureDetector(
-          onTap: () async {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (builder) {
-                  return BookingView(
-                    doctorDataModel:
-                        BlocProvider.of<DoctorCubit>(context).doctors[index],
-                  );
-                },
+    return SingleChildScrollView(
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height * 0.8,
+        child: ListView.separated(
+          itemBuilder: (BuildContext context, int index) {
+            return GestureDetector(
+              onTap: () async {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (builder) {
+                      return BookingView(
+                        doctorDataModel: BlocProvider.of<DoctorCubit>(context)
+                            .doctors[index],
+                      );
+                    },
+                  ),
+                );
+                await BlocProvider.of<BookingCubit>(context).getTimesForDoctor(
+                  doctorid:
+                      BlocProvider.of<DoctorCubit>(context).doctors[index].id,
+                  year: DateTime.now().year.toString(),
+                  day: DateTime.now().day.toString(),
+                  month: DateTime.now().month.toString(),
+                );
+              },
+              child: CustomDoctorItem(
+                doctorDataModel:
+                    BlocProvider.of<DoctorCubit>(context).doctors[index],
               ),
             );
-            await BlocProvider.of<BookingCubit>(context).getTimesForDoctor(
-              doctorid: BlocProvider.of<DoctorCubit>(context).doctors[index].id,
-              year: DateTime.now().year.toString(),
-              day: DateTime.now().day.toString(),
-              month: DateTime.now().month.toString(),
+          },
+          separatorBuilder: (BuildContext context, int index) {
+            return Divider(
+              color: Colors.grey.withOpacity(0.1),
+              thickness: 3,
+              endIndent: 20,
             );
           },
-          child: CustomDoctorItem(
-              doctorDataModel:
-                  BlocProvider.of<DoctorCubit>(context).doctors[index]),
-        );
-      },
-      separatorBuilder: (BuildContext context, int index) {
-        return Divider(
-          color: Colors.grey.withOpacity(0.1),
-          thickness: 3,
-          endIndent: 20,
-        );
-      },
-      itemCount: BlocProvider.of<DoctorCubit>(context).doctors.length,
+          itemCount: BlocProvider.of<DoctorCubit>(context).doctors.length,
+        ),
+      ),
     );
   }
 }

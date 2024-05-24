@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gbsub/Features/bmi/presenatation/views/widgets/CustomAppbar.dart';
+import 'package:gbsub/Core/utilts/widgets/CustomAppbar.dart';
 import 'package:gbsub/Features/picking_doctor_contact/logic/get_doctor_by_speciality.dart';
 import 'package:gbsub/Features/picking_doctor_contact/ui/picking_doctor_view_body.dart';
 

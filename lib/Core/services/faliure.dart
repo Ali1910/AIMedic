@@ -37,7 +37,11 @@ class ServerFailure extends Failure {
 
   factory ServerFailure.fromResponse(int statesCode, dynamic response) {
     if (statesCode == 400) {
-      return ServerFailure(response);
+      if (response.runtimeType == String) {
+        return ServerFailure(response);
+      } else {
+        return response['Name'][0];
+      }
     } else {
       return ServerFailure('يوجد مشكلة في الخادم يتم العمل عليه حاليا');
     }

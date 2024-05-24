@@ -17,7 +17,7 @@ class DoctorCubit extends Cubit<DoctorPickingStates> {
       DoctorDataModel doctor = DoctorDataModel.fromjson(element);
       doctors.add(doctor);
     }
-    print(doctors[0].name);
+
     return doctors;
   }
 }
