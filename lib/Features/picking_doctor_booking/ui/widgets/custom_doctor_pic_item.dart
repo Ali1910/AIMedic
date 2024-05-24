@@ -12,7 +12,7 @@ class CustomPictureItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 110.h,
+      height: 140.h,
       width: 110.w,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(8),

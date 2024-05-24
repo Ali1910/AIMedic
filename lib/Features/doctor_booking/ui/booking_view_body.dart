@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gbsub/Core/utilts/style.dart';
 import 'package:gbsub/Features/doctor_booking/ui/widgets/custom_booking_elevated_button.dart';
@@ -24,6 +26,28 @@ class BookingViewBody extends StatelessWidget {
           CustomUpperbodyShape(name: doctorDataModel.name),
           SizedBox(
             height: 50.h,
+          ),
+          Row(
+            children: [
+              Text(
+                'العنوان',
+                style: Styles.style20,
+              ),
+              SizedBox(
+                width: 10.w,
+              ),
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.6,
+                child: Text(
+                  doctorDataModel.loaction,
+                  overflow: TextOverflow.fade,
+                  style: Styles.style14.copyWith(color: Colors.grey),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 10.h,
           ),
           DoctorInfoContainer(
             value1: '${doctorDataModel.fee} جنيه',

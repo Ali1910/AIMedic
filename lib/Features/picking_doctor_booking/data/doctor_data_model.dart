@@ -6,6 +6,8 @@ class DoctorDataModel {
   final String phoneNumber;
   final String university;
   final int id;
+  final String rating;
+  final String loaction;
 
   DoctorDataModel(
       {required this.city,
@@ -14,16 +16,19 @@ class DoctorDataModel {
       required this.id,
       required this.phoneNumber,
       required this.pic,
-      required this.university});
+      required this.university,
+      required this.rating,
+      required this.loaction});
   factory DoctorDataModel.fromjson(json) {
     return DoctorDataModel(
-      city: json['city'],
-      fee: json['fee'],
-      id: json['id'],
-      name: json['name'],
-      phoneNumber: json['phoneNumber'],
-      pic: json['profilePic'],
-      university: json['universiry'],
-    );
+        city: json['city'],
+        fee: json['fee'],
+        id: json['id'],
+        name: json['name'],
+        phoneNumber: json['phoneNumber'],
+        pic: json['profilePic'],
+        university: json['universiry'],
+        rating: json['rating'].toString(),
+        loaction: json['location']);
   }
 }

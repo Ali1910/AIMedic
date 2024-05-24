@@ -16,24 +16,6 @@ class HomeView extends StatelessWidget {
         child: Directionality(
           textDirection: TextDirection.rtl,
           child: Scaffold(
-            // appBar: AppBar(
-            //   elevation: 0,
-            //   actions: [
-            //     IconButton(
-            //       onPressed: () {},
-            //       icon: Icon(
-            //         FontAwesomeIcons.envelope,
-            //         color: mainColor,
-            //       ),
-            //     ),
-            //   ],
-            //   backgroundColor: Colors.white,
-            //   centerTitle: true,
-            //   title: Text(
-            //     'صحي',
-            //     style: Styles.styleBold24.copyWith(color: mainColor),
-            //   ),
-            // ),
             body: BlocBuilder<MainCubit, MainStates>(
               builder: (context, state) {
                 var myblocprovider = BlocProvider.of<MainCubit>(context);

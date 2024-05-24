@@ -22,6 +22,8 @@ class CustomDoctorItem extends StatelessWidget {
           name: doctorDataModel.name,
           univ: doctorDataModel.university,
           fee: doctorDataModel.fee,
+          location: doctorDataModel.loaction,
+          rating: doctorDataModel.rating,
         )
       ],
     );
