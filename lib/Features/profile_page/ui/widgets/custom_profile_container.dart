@@ -5,6 +5,7 @@ import 'package:gbsub/Core/utilts/style.dart';
 import 'package:gbsub/Features/perrsonal_details/ui/personal_details_view.dart';
 import 'package:gbsub/Features/profile_page/data/profile_model.dart';
 import 'package:gbsub/Features/profile_page/logic/profile_cubit.dart';
+import 'package:gbsub/Features/profile_page/logic/read_nfc.dart';
 import 'package:gbsub/Features/profile_page/ui/widgets/custom_profile_view_body_divider.dart';
 import 'package:gbsub/Features/profile_page/ui/widgets/custom_profile_view_body_item.dart';
 import 'package:gbsub/Features/profile_page/ui/widgets/custom_profile_view_row_container.dart';
@@ -25,7 +26,9 @@ class CustomProfileConatiner extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            CustomProfilePictuteProfileView(pic: profileModel.pic),
+            const CustomProfilePictuteProfileView(
+                pic:
+                    'https://crowdcreate.s3.amazonaws.com/uploads/idea/image/254/kids_wearing_sunglasses.jpg'),
             SizedBox(
               height: 5.h,
             ),
@@ -68,6 +71,15 @@ class CustomProfileConatiner extends StatelessWidget {
               text: 'تذكيرات ادوية',
               imageUrl: 'assets/images/notification.png',
               color: Colors.black,
+            ),
+            const CustomDivider(),
+            CustomProfileViewBodyItem(
+              onTap: () async {
+                await readNfcData(context);
+              },
+              text: 'تسجيل كارت NFC',
+              imageUrl: 'assets/images/NFC.png',
+              color: const Color(0xffc0c0c0),
             ),
             const CustomDivider(),
             CustomProfileViewBodyItem(

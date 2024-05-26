@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gbsub/Core/utilts/constans.dart';
 import 'package:gbsub/Core/utilts/style.dart';
 import 'package:gbsub/Features/SignUp/Ui/signup_view.dart';
@@ -26,8 +27,8 @@ class CustomTextButton extends StatelessWidget {
             style: TextButton.styleFrom(padding: EdgeInsets.zero),
             child: Text(
               'انشاء حساب',
-              style:
-                  Styles.styleBold16.copyWith(color: mainColor, fontSize: 13),
+              style: Styles.styleBold16
+                  .copyWith(color: mainColor, fontSize: 13.sp),
             ))
       ],
     );

@@ -22,10 +22,6 @@ class CustomTabBar extends StatelessWidget {
               widget: BmiView(),
             ),
             Custombody(
-              text: 'اعدادات NFC',
-              widget: Text('aa'),
-            ),
-            Custombody(
               text: 'ارشادات',
               widget: MedicalAdviceView(),
             ),

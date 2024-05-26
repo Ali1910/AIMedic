@@ -11,7 +11,7 @@ class SPecialityViewBody extends StatelessWidget {
     return Center(
       child: GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3, mainAxisSpacing: 30.w, crossAxisSpacing: 10.h),
+            crossAxisCount: 3, mainAxisSpacing: 30.w),
         itemCount: SpecData.data['image'].length,
         itemBuilder: (BuildContext context, int index) {
           return SpecialityItem(

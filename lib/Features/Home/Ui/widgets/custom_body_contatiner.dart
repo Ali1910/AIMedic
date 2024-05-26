@@ -52,7 +52,7 @@ class CustomBodyContainer extends StatelessWidget {
                 Text(
                   text,
                   style: GoogleFonts.ibmPlexSansArabic(
-                    textStyle: Styles.style16.copyWith(color: mainColor),
+                    textStyle: Styles.style14.copyWith(color: mainColor),
                   ),
                 ),
               ],

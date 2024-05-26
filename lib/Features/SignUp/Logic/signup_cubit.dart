@@ -158,7 +158,7 @@ class SignUpCubit extends Cubit<SignUpStates> {
       "gender": "ذكر"
     });
     try {
-      var respon = await dio.post("https://10.0.2.2:7093/api/User", data: data);
+      var respon = await dio.post("$baseUrl/User", data: data);
       if (respon.statusCode == 200) {
         if (respon.statusCode == 200 && respon.data == "$email already eisxt") {
           return 0;

@@ -18,7 +18,6 @@ class MainCubit extends Cubit<MainStates> {
 
   List<Widget> bottomnavigationbarviews = [
     const HomeViewBody(),
-    const HomeViewBody(),
     const QuestionAndAnswerViewBody(),
     const ProfileView()
   ];

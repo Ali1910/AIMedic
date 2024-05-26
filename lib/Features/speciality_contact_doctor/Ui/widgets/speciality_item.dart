@@ -40,11 +40,11 @@ class SpecialityItem extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 15.h,
+            height: 5.h,
           ),
           Text(
             SpecData.data['title'][index],
-            style: Styles.style16,
+            style: Styles.style14,
           )
         ],
       ),

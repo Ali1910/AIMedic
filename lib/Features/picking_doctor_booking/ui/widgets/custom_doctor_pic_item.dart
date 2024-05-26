@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gbsub/Core/utilts/constans.dart';
 
 class CustomPictureItem extends StatelessWidget {
   const CustomPictureItem({
@@ -12,12 +11,12 @@ class CustomPictureItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 140.h,
+      height: 160.h,
       width: 110.w,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(8),
         child: Image.network(
-          '$imageUrl$pic',
+          pic,
           fit: BoxFit.cover,
         ),
       ),

@@ -16,7 +16,7 @@ class CustomProfilePictuteProfileView extends StatelessWidget {
         ClipRRect(
           borderRadius: BorderRadius.circular(60.w),
           child: Image.network(
-            'https://10.0.2.2:7093/Resources/$pic',
+            pic,
             fit: BoxFit.fill,
             width: 120.w,
             height: 120.w,

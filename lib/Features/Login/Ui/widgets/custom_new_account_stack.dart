@@ -5,7 +5,9 @@ import 'package:gbsub/Core/utilts/style.dart';
 class CreateNewAccountStack extends StatelessWidget {
   const CreateNewAccountStack({
     super.key,
+    required this.text,
   });
+  final String text;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,7 @@ class CreateNewAccountStack extends StatelessWidget {
               padding: EdgeInsets.only(left: 5.w, right: 5.w, bottom: 5.h),
               color: Colors.white,
               child: Text(
-                'او قم بانشاء حساب جديد',
+                text,
                 style: Styles.style11
                     .copyWith(color: Colors.grey.withOpacity(0.9)),
               ),

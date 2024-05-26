@@ -37,8 +37,6 @@ class CustomBottomNavBar extends StatelessWidget {
               label: 'الرئيسية',
             ),
             BottomNavigationBarItem(
-                icon: Icon(FontAwesomeIcons.nfcSymbol), label: "NFC"),
-            BottomNavigationBarItem(
                 icon: Icon(FontAwesomeIcons.question), label: 'سؤال وجواب'),
             BottomNavigationBarItem(
                 icon: Icon(FontAwesomeIcons.userGear), label: 'حسابك'),

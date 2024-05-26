@@ -44,7 +44,7 @@ class SpecialityItem extends StatelessWidget {
           ),
           Text(
             SpecData.data['title'][index],
-            style: Styles.style16,
+            style: Styles.style14,
           )
         ],
       ),

@@ -12,6 +12,7 @@ import 'package:gbsub/Features/SignUp/Ui/Widgets/custom_sign_up_date_picker.dart
 import 'package:gbsub/Features/SignUp/Ui/Widgets/custom_signup_city_picker_conatiner.dart';
 import 'package:gbsub/Features/SignUp/Ui/Widgets/custom_signup_special_condition_picker.dart';
 import 'package:gbsub/Features/SignUp/Ui/Widgets/profile_picture_profile_view.dart';
+import 'package:gbsub/Features/news/logic/news_states.dart';
 import 'package:gbsub/core/utilts/style.dart';
 
 class SignUpViewBody extends StatelessWidget {
@@ -77,66 +78,74 @@ class SignUpViewBody extends StatelessWidget {
                   SizedBox(
                     height: 25.h,
                   ),
-                  Customelevatedbutton(
-                    text: 'تسجيل',
-                    onPressed: () async {
-                      if (of.formkey.currentState!.validate()) {
-                        if (of.citypicked) {
-                          if (of.datepicked) {
-                            if (of.specailConditionpicked) {
-                              if (of.imagePicked) {
-                                if (of.password == of.passwordconfirmation) {
-                                  var done = await of.signup(
-                                      of.specailCondition,
-                                      of.city,
-                                      of.dateformatted,
-                                      of.email,
-                                      of.fullname,
-                                      of.phoneNumber,
-                                      of.password,
-                                      of.passwordconfirmation);
-                                  if (done == 1) {
-                                    customSnackBar(
-                                        context, 'تم إنشاء حساب بنجاح');
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) {
-                                          return const HomeView();
-                                        },
-                                      ),
-                                    );
-                                  } else if (done == 0) {
-                                    customSnackBar(context,
-                                        'هذا الحساب ${of.email}موجود بالفعل ');
+                  state is LoadingState
+                      ? Center(
+                          child: CircularProgressIndicator(
+                            backgroundColor: mainColor,
+                          ),
+                        )
+                      : Customelevatedbutton(
+                          text: 'تسجيل',
+                          onPressed: () async {
+                            if (of.formkey.currentState!.validate()) {
+                              if (of.citypicked) {
+                                if (of.datepicked) {
+                                  if (of.specailConditionpicked) {
+                                    if (of.imagePicked) {
+                                      if (of.password ==
+                                          of.passwordconfirmation) {
+                                        var done = await of.signup(
+                                            of.specailCondition,
+                                            of.city,
+                                            of.dateformatted,
+                                            of.email,
+                                            of.fullname,
+                                            of.phoneNumber,
+                                            of.password,
+                                            of.passwordconfirmation);
+                                        if (done == 1) {
+                                          customSnackBar(
+                                              context, 'تم إنشاء حساب بنجاح');
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) {
+                                                return const HomeView();
+                                              },
+                                            ),
+                                          );
+                                        } else if (done == 0) {
+                                          customSnackBar(context,
+                                              'هذا الحساب ${of.email}موجود بالفعل ');
+                                        } else {
+                                          customSnackBar(context,
+                                              'حدث خطأ اثناء التسجيل حاول مرة أخرى');
+                                        }
+                                      } else {
+                                        customSnackBar(
+                                            context, 'ـأكد من صحة كلمة السر');
+                                      }
+                                    } else {
+                                      customSnackBar(context,
+                                          'لا تنسى اختيار  صورة شخصية');
+                                    }
                                   } else {
                                     customSnackBar(context,
-                                        'حدث خطأ اثناء التسجيل حاول مرة أخرى');
+                                        'لا تنسى اختيار حالة خاصة ان وجد');
                                   }
                                 } else {
                                   customSnackBar(
-                                      context, 'ـأكد من صحة كلمة السر');
+                                      context, 'لا تنسى اختيار تاريخ ميلادك');
                                 }
                               } else {
                                 customSnackBar(
-                                    context, 'لا تنسى اختيار  صورة شخصية');
+                                    context, 'لا تنسى اختيار الميدناتك');
                               }
                             } else {
-                              customSnackBar(
-                                  context, 'لا تنسى اختيار حالة خاصة ان وجد');
+                              of.autovalidateMode = AutovalidateMode.always;
                             }
-                          } else {
-                            customSnackBar(
-                                context, 'لا تنسى اختيار تاريخ ميلادك');
-                          }
-                        } else {
-                          customSnackBar(context, 'لا تنسى اختيار الميدناتك');
-                        }
-                      } else {
-                        of.autovalidateMode = AutovalidateMode.always;
-                      }
-                    },
-                  ),
+                          },
+                        ),
                   SizedBox(
                     height: 10.h,
                   ),

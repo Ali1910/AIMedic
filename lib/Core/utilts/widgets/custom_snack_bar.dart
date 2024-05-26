@@ -5,7 +5,7 @@ import 'package:gbsub/Core/utilts/style.dart';
 
 ScaffoldFeatureController<SnackBar, SnackBarClosedReason> customSnackBar(
     BuildContext context, final String text,
-    {int duration = 1000}) {
+    {int duration = 1000, bool correctColors = true}) {
   return ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
       behavior: SnackBarBehavior.floating,
@@ -21,7 +21,7 @@ ScaffoldFeatureController<SnackBar, SnackBarClosedReason> customSnackBar(
           style: Styles.style16.copyWith(color: Colors.white),
         ),
       ),
-      backgroundColor: mainColor,
+      backgroundColor: correctColors ? mainColor : Colors.red,
     ),
   );
 }
