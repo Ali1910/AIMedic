@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gbsub/Core/utilts/constans.dart';
 import 'package:gbsub/Core/utilts/style.dart';
-import 'package:gbsub/Features/bmi/presenatation/views/widgets/CustomIncrementDectrementtextbutton.dart';
+import 'package:gbsub/Features/bmi/Ui/widgets/CustomIncrementDectrementtextbutton.dart';
 
 class CustomWeightAgeConatiner extends StatelessWidget {
   const CustomWeightAgeConatiner(

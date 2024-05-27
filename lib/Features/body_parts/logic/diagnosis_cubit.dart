@@ -1,4 +1,6 @@
+import 'package:csv/csv.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gbsub/Core/utilts/constans.dart';
 import 'package:gbsub/Features/body_parts/data/body_part_model.dart';
@@ -17,5 +19,12 @@ class DiagnosisCubit extends Cubit<DiagnosisStates> {
       listofBodyParts.add(bodypart);
     }
     return listofBodyParts;
+  }
+
+  void CSV() async {
+    var stream =
+        await rootBundle.loadString('assets/files/يوم تخرج تكريمي (1-55).csv');
+    var data = CsvToListConverter(eol: '\r').convert(stream);
+    print(data[0][5]);
   }
 }

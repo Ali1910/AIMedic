@@ -11,4 +11,17 @@ class APiService {
     );
     return response;
   }
+
+  Future<dynamic> postNoBody({required String endpoint}) async {
+    var response = await _dio.post(
+      '$baseUrl$endpoint',
+    );
+    return response;
+  }
+
+  Future<dynamic> postWithBody(
+      {required String endpoint, required dynamic data}) async {
+    var response = await _dio.post('$baseUrl$endpoint', data: data);
+    return response;
+  }
 }
