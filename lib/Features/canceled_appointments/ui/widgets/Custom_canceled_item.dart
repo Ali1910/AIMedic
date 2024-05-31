@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gbsub/Core/utilts/style.dart';
 import 'package:gbsub/Features/booking_history/data/appointment_data_model_dto.dart.dart';
 import 'package:gbsub/Features/booking_history/ui/widgets/custom_booking_item_doctor_info.dart';
 import 'package:gbsub/Features/booking_history/ui/widgets/custom_contact_message_icon.dart';
 import 'package:gbsub/Core/utilts/widgets/custom_divider.dart';
 import 'package:gbsub/Features/booking_history/ui/widgets/custom_doctor_image.dart';
-import 'package:gbsub/core/utilts/style.dart';
 
-class CustomCancelledBookingHistoryItem extends StatelessWidget {
-  const CustomCancelledBookingHistoryItem({
+class CustomCanceledItem extends StatelessWidget {
+  const CustomCanceledItem({
     super.key,
     required this.appointmentDateModelDTO,
   });
@@ -43,13 +43,10 @@ class CustomCancelledBookingHistoryItem extends StatelessWidget {
           ),
           Center(
             child: Text(
-              'تم الإلغاء',
-              style: Styles.styleBold16.copyWith(color: Colors.red),
+              'تم الالغاء',
+              style: Styles.style16.copyWith(color: Colors.red),
             ),
-          ),
-          SizedBox(
-            height: 10.h,
-          ),
+          )
         ],
       ),
     );

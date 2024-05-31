@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gbsub/Core/services/sharedpref.dart';
 import 'package:gbsub/Core/utilts/constans.dart';
 import 'package:gbsub/Core/utilts/style.dart';
 import 'package:gbsub/Core/utilts/widgets/custom_snack_bar.dart';
 import 'package:gbsub/Features/booking_history/data/appointment_data_model_dto.dart.dart';
-import 'package:gbsub/Features/booking_history/logic/boking_history_cubit.dart';
 import 'package:gbsub/Features/booking_history/ui/booking_history_view.dart';
 import 'package:gbsub/Features/doctor_booking/logic/booking_cubit.dart';
 import 'package:gbsub/Features/doctor_booking/logic/booking_states.dart';
@@ -49,22 +47,13 @@ class CustomUpdatingElevatedbuttom extends StatelessWidget {
                     );
                     if (booked) {
                       customSnackBar(context, 'تم تعديل الميعاد بنجاح');
-                      Navigator.push(
+                      Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                           builder: (context) {
                             return const BookingHistoryView();
                           },
                         ),
-                      );
-                      await BlocProvider.of<BookingHistroyCubit>(context)
-                          .getAppointMents(
-                              Sharedhelper.getintdata(intkey), false);
-                      of.getTimesForDoctor(
-                        doctorid: of.doctorid,
-                        year: of.year,
-                        day: of.day,
-                        month: of.month,
                       );
                     } else {
                       customSnackBar(context,

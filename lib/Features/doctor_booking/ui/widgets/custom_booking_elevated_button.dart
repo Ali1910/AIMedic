@@ -45,19 +45,13 @@ class CustomBookingElevatedbuttom extends StatelessWidget {
                         timeid: of.timeid);
                     if (booked) {
                       customSnackBar(context, 'تم حجز الميعاد بنجاح');
-                      Navigator.push(
+                      Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                           builder: (context) {
                             return const BookingHistoryView();
                           },
                         ),
-                      );
-                      of.getTimesForDoctor(
-                        doctorid: of.doctorid,
-                        year: of.year,
-                        day: of.day,
-                        month: of.month,
                       );
                     } else {
                       customSnackBar(context,

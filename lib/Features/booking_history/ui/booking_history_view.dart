@@ -1,9 +1,14 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gbsub/Core/services/api_services.dart';
+import 'package:gbsub/Core/services/sharedpref.dart';
 import 'package:gbsub/Core/utilts/constans.dart';
 import 'package:gbsub/Core/utilts/style.dart';
-import 'package:gbsub/Features/booking_history/ui/booking_history_body_cancelled.dart';
-import 'package:gbsub/Features/booking_history/ui/booking_history_body_not_cancelled.dart';
 import 'package:gbsub/Core/utilts/widgets/custom_tab.dart';
+import 'package:gbsub/Features/canceled_appointments/ui/canceled_appointmrnts.dart';
+import 'package:gbsub/Features/up_coming_appointments.dart/logic/up_coming_appointments_cubit.dart';
+import 'package:gbsub/Features/up_coming_appointments.dart/repo/upcoming_repo_impl.dart';
 
 class BookingHistoryView extends StatelessWidget {
   const BookingHistoryView({super.key});
@@ -12,7 +17,7 @@ class BookingHistoryView extends StatelessWidget {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: DefaultTabController(
-        length: 2,
+        length: 3,
         child: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.white,
@@ -35,13 +40,26 @@ class BookingHistoryView extends StatelessWidget {
                 CustomTabBar(
                   text: 'الحجوزات الملغية',
                 ),
+                CustomTabBar(
+                  text: 'الحجوزات المنتهية',
+                ),
               ],
             ),
           ),
-          body: const TabBarView(
+          body: TabBarView(
             children: [
-              ListOfPersonalRecord(),
-              ListOfCancelledPersonalRecord(),
+              BlocProvider(
+                create: (context) => UpComingAppointmentsCubit(
+                  UpcomingRepoImpl(
+                    APiService(
+                      Dio(),
+                    ),
+                  ),
+                )..fetchAppointments(
+                    Sharedhelper.getintdata(intkey),
+                  ),
+                child: const CanceledAppointmentsBody(),
+              ),
             ],
           ),
         ),

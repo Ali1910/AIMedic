@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:gbsub/Core/services/api_services.dart';
 import 'package:gbsub/Core/services/faliure.dart';
+import 'package:gbsub/Core/utilts/widgets/exception_method.dart';
 import 'package:gbsub/Features/bmi_medical_record/data/bmi_data_model.dart';
 import 'package:gbsub/Features/bmi_medical_record/logic/repo/bmi_record_repo.dart';
 
@@ -15,15 +16,7 @@ class BMIRecordRepoImpl extends BMIRecordrepo {
       await aPiService.delete(endpoint: '/BMI?BMIId=$bmiId');
       return right(true);
     } catch (ex) {
-      if (ex is DioException) {
-        return left(ServerFailure.fromdioException(ex));
-      } else {
-        return left(
-          ServerFailure(
-            ex.toString(),
-          ),
-        );
-      }
+      return left(exceptionMethod(ex));
     }
   }
 

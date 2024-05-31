@@ -10,25 +10,6 @@ class BookingHistroyCubit extends Cubit<BookingHistoryStates> {
   final Dio dio;
   List<AppointmentDateModelDTO> listOfAppointment = [];
 
-  Future<List<AppointmentDateModelDTO>> getAppointMents(
-      int userId, bool state) async {
-    try {
-      listOfAppointment = [];
-      var response = await dio.get(
-          '$baseUrl/AppointmentContoller/GetUserAppointments?userId=$userId&state=$state');
-
-      for (var element in response.data) {
-        AppointmentDateModelDTO appointment =
-            AppointmentDateModelDTO.fromjson(element);
-        listOfAppointment.add(appointment);
-      }
-      emit(BookingHistoryDeleteState());
-      return listOfAppointment;
-    } catch (ex) {
-      return [];
-    }
-  }
-
   Future<bool> deleteAppointments(int appointmentid) async {
     try {
       var response = await dio
