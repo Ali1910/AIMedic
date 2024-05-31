@@ -6,9 +6,12 @@ import 'package:gbsub/Core/services/sharedpref.dart';
 import 'package:gbsub/Core/utilts/constans.dart';
 import 'package:gbsub/Core/utilts/style.dart';
 import 'package:gbsub/Core/utilts/widgets/custom_tab.dart';
+import 'package:gbsub/Features/canceled_appointments/logic/canceled_appointments_cubit.dart';
+import 'package:gbsub/Features/canceled_appointments/repo/Canceled_repo_impl.dart';
 import 'package:gbsub/Features/canceled_appointments/ui/canceled_appointmrnts.dart';
 import 'package:gbsub/Features/up_coming_appointments.dart/logic/up_coming_appointments_cubit.dart';
 import 'package:gbsub/Features/up_coming_appointments.dart/repo/upcoming_repo_impl.dart';
+import 'package:gbsub/Features/up_coming_appointments.dart/ui/up_coming_appointments.dart';
 
 class BookingHistoryView extends StatelessWidget {
   const BookingHistoryView({super.key});
@@ -51,6 +54,30 @@ class BookingHistoryView extends StatelessWidget {
               BlocProvider(
                 create: (context) => UpComingAppointmentsCubit(
                   UpcomingRepoImpl(
+                    APiService(
+                      Dio(),
+                    ),
+                  ),
+                )..fetchAppointments(
+                    Sharedhelper.getintdata(intkey),
+                  ),
+                child: const UpComingAppointmentsBody(),
+              ),
+              BlocProvider(
+                create: (context) => CanceledAppointmentsCubit(
+                  CanceledRepoImpl(
+                    APiService(
+                      Dio(),
+                    ),
+                  ),
+                )..fetchAppointments(
+                    Sharedhelper.getintdata(intkey),
+                  ),
+                child: const CanceledAppointmentsBody(),
+              ),
+              BlocProvider(
+                create: (context) => CanceledAppointmentsCubit(
+                  CanceledRepoImpl(
                     APiService(
                       Dio(),
                     ),

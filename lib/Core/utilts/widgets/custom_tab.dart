@@ -12,7 +12,7 @@ class CustomTabBar extends StatelessWidget {
     return Tab(
       child: Text(
         text,
-        style: Styles.style16.copyWith(color: Colors.grey),
+        style: Styles.style11.copyWith(color: Colors.grey),
       ),
     );
   }

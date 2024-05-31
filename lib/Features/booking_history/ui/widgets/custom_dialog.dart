@@ -41,22 +41,23 @@ class Customdialog extends StatelessWidget {
         ),
         TextButton(
           onPressed: () async {
-            var of = BlocProvider.of<BookingHistroyCubit>(context);
-            bool checker = await of.deleteAppointments(appointment.id);
-            if (checker) {
-              // Navigator.of(context).pop(await of.getAppointMents(
-              //     Sharedhelper.getintdata(intkey), false));
-              // var of2 = BlocProvider.of<BookingCubit>(context);
-              // await of2.getTimesForDoctor(
-              //     doctorid: appointment.dcotorid,
-              //     year: of2.year,
-              //     day: of2.day,
-              //     month: of2.month);
-            } else {
-              customSnackBar(context, 'لا يمكن حذف هذا الميعاد نظرا لضيق الوقت',
-                  duration: 1500);
-              Navigator.of(context).pop();
-            }
+            // var of = BlocProvider.of<BookingHistroyCubit>(context);
+            // bool checker = await of.deleteAppointments(appointment.id);
+            // if (checker) {
+            //   // Navigator.of(context).pop(await of.getAppointMents(
+            //   //     Sharedhelper.getintdata(intkey), false));
+            //   // var of2 = BlocProvider.of<BookingCubit>(context);
+            //   // await of2.getTimesForDoctor(
+            //   //     doctorid: appointment.dcotorid,
+            //   //     year: of2.year,
+            //   //     day: of2.day,
+            //   //     month: of2.month);
+            //   Navigator.of(context).pop();
+            // } else {
+            //   customSnackBar(context, 'لا يمكن حذف هذا الميعاد نظرا لضيق الوقت',
+            //       duration: 1500);
+            //   Navigator.of(context).pop();
+            // }
           },
           child: Text(
             'نعم',

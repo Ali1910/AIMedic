@@ -15,18 +15,21 @@ class UpcomingSucessBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Directionality(
       textDirection: TextDirection.rtl,
-      child: ListView.separated(
-        itemCount: appointmentDateModelDTO.length,
-        itemBuilder: (context, index) {
-          return CustomUpcomingBookingHistoryItem(
-            appointmentDateModelDTO: appointmentDateModelDTO[index],
-          );
-        },
-        separatorBuilder: (BuildContext context, int index) {
-          return SizedBox(
-            height: 20.h,
-          );
-        },
+      child: Padding(
+        padding: EdgeInsets.only(top: 10.h),
+        child: ListView.separated(
+          itemCount: appointmentDateModelDTO.length,
+          itemBuilder: (context, index) {
+            return CustomUpcomingBookingHistoryItem(
+              appointmentDateModelDTO: appointmentDateModelDTO[index],
+            );
+          },
+          separatorBuilder: (BuildContext context, int index) {
+            return SizedBox(
+              height: 20.h,
+            );
+          },
+        ),
       ),
     );
   }

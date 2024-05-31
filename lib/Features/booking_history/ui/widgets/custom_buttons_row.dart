@@ -86,7 +86,7 @@ class CustomBookingItemButtonsRow extends StatelessWidget {
         day: appointment.day,
         month: appointment.month);
 
-    Navigator.push(
+    Navigator.pushReplacement(
       context,
       MaterialPageRoute(
         builder: (context) => BookingUpdateView(

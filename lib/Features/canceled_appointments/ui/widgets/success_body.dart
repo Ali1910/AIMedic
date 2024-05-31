@@ -12,8 +12,8 @@ class CanceledSuccessBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Directionality(
-      textDirection: TextDirection.rtl,
+    return Padding(
+      padding: EdgeInsets.only(top: 10.h),
       child: ListView.separated(
         itemCount: appointmentDateModelDTO.length,
         itemBuilder: (context, index) {
