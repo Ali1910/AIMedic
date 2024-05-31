@@ -10,21 +10,18 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => MainCubit(),
-      child: SafeArea(
-        child: Directionality(
-          textDirection: TextDirection.rtl,
-          child: Scaffold(
-            body: BlocBuilder<MainCubit, MainStates>(
-              builder: (context, state) {
-                var myblocprovider = BlocProvider.of<MainCubit>(context);
-                return myblocprovider
-                    .bottomnavigationbarviews[myblocprovider.currentIndex];
-              },
-            ),
-            bottomNavigationBar: const CustomBottomNavBar(),
+    return SafeArea(
+      child: Directionality(
+        textDirection: TextDirection.rtl,
+        child: Scaffold(
+          body: BlocBuilder<MainCubit, MainStates>(
+            builder: (context, state) {
+              var myblocprovider = BlocProvider.of<MainCubit>(context);
+              return myblocprovider
+                  .bottomnavigationbarviews[myblocprovider.currentIndex];
+            },
           ),
+          bottomNavigationBar: const CustomBottomNavBar(),
         ),
       ),
     );

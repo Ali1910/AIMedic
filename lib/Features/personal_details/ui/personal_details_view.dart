@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gbsub/Core/utilts/widgets/CustomAppbar.dart';
-import 'package:gbsub/Features/perrsonal_details/ui/personal_details_view_body.dart';
+import 'package:gbsub/Features/personal_details/ui/personal_details_view_body.dart';
 import 'package:gbsub/Features/profile_page/data/profile_model.dart';
 
 class PersonalDetialsView extends StatelessWidget {

@@ -3,7 +3,7 @@ import 'package:gbsub/Core/utilts/constans.dart';
 import 'package:gbsub/Core/utilts/style.dart';
 import 'package:gbsub/Features/booking_history/ui/booking_history_body_cancelled.dart';
 import 'package:gbsub/Features/booking_history/ui/booking_history_body_not_cancelled.dart';
-import 'package:gbsub/Features/booking_history/ui/widgets/custom_tab.dart';
+import 'package:gbsub/Core/utilts/widgets/custom_tab.dart';
 
 class BookingHistoryView extends StatelessWidget {
   const BookingHistoryView({super.key});
@@ -29,10 +29,10 @@ class BookingHistoryView extends StatelessWidget {
               indicatorColor: mainColor,
               unselectedLabelColor: Colors.grey,
               tabs: const [
-                CystomBookingViewTap(
+                CustomTabBar(
                   text: 'الحجوزات القادمة',
                 ),
-                CystomBookingViewTap(
+                CustomTabBar(
                   text: 'الحجوزات الملغية',
                 ),
               ],

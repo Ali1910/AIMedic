@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gbsub/core/utilts/style.dart';
 
-class CystomBookingViewTap extends StatelessWidget {
-  const CystomBookingViewTap({
+class CustomTabBar extends StatelessWidget {
+  const CustomTabBar({
     super.key,
     required this.text,
   });

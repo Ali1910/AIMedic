@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gbsub/Core/utilts/widgets/custom_snack_bar.dart';
 import 'package:gbsub/Features/Home/Ui/Home_view.dart';
-import 'package:gbsub/Features/perrsonal_details/logic/personal_details_cubit.dart';
+import 'package:gbsub/Features/personal_details/logic/personal_details_cubit.dart';
 
 Future<void> phoneNumberUpdateMethod(
     PersonalDetailsCubit of, BuildContext context) async {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gbsub/Features/perrsonal_details/logic/personal_details_cubit.dart';
-import 'package:gbsub/Features/perrsonal_details/ui/widgets/update_phone_number_view_body.dart';
+import 'package:gbsub/Features/personal_details/logic/personal_details_cubit.dart';
+import 'package:gbsub/Features/personal_details/ui/widgets/update_phone_number_view_body.dart';
 
 class UpdatePhoneNumberView extends StatelessWidget {
   const UpdatePhoneNumberView({super.key});

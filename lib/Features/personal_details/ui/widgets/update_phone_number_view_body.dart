@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gbsub/Core/utilts/constans.dart';
 import 'package:gbsub/Core/utilts/widgets/custom_elevated_button_button.dart';
-import 'package:gbsub/Features/perrsonal_details/logic/functions/phone_number_update_method.dart';
-import 'package:gbsub/Features/perrsonal_details/logic/peronal_details_state.dart';
-import 'package:gbsub/Features/perrsonal_details/logic/personal_details_cubit.dart';
+import 'package:gbsub/Features/personal_details/logic/functions/phone_number_update_method.dart';
+import 'package:gbsub/Features/personal_details/logic/peronal_details_state.dart';
+import 'package:gbsub/Features/personal_details/logic/personal_details_cubit.dart';
 import 'package:gbsub/core/utilts/style.dart';
 
 class UpdatePhoneNumberViewBody extends StatelessWidget {

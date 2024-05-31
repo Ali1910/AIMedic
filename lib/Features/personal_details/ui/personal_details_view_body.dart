@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gbsub/Core/utilts/constans.dart';
-import 'package:gbsub/Features/perrsonal_details/ui/widgets/custom_personal_details_continer.dart';
-import 'package:gbsub/Features/perrsonal_details/ui/widgets/update_password_view.dart';
-import 'package:gbsub/Features/perrsonal_details/ui/widgets/update_phone_number_view.dart';
+import 'package:gbsub/Features/personal_details/ui/widgets/custom_personal_details_continer.dart';
+import 'package:gbsub/Features/personal_details/ui/widgets/update_password_view.dart';
+import 'package:gbsub/Features/personal_details/ui/widgets/update_phone_number_view.dart';
 import 'package:gbsub/Features/profile_page/data/profile_model.dart';
 import 'package:gbsub/core/utilts/style.dart';
 

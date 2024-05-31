@@ -71,7 +71,6 @@ class AddingQuestionViewBody extends StatelessWidget {
                             bool state = await of
                                 .postQUestion(Sharedhelper.getintdata(intkey));
                             if (state) {
-                              await of.getAllQuetions();
                               Navigator.pop(context);
                               await of.getAllQuetions();
                             } else {

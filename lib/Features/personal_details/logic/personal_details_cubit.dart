@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gbsub/Core/services/sharedpref.dart';
 import 'package:gbsub/Core/utilts/constans.dart';
-import 'package:gbsub/Features/perrsonal_details/logic/peronal_details_state.dart';
+import 'package:gbsub/Features/personal_details/logic/peronal_details_state.dart';
 
 class PersonalDetailsCubit extends Cubit<PersonalDetailsStates> {
   PersonalDetailsCubit() : super(PersonalDetailsInitialState());

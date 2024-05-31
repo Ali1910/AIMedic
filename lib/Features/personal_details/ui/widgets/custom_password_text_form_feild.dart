@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gbsub/Core/utilts/constans.dart';
 import 'package:gbsub/Core/utilts/style.dart';
-import 'package:gbsub/Features/perrsonal_details/logic/personal_details_cubit.dart';
+import 'package:gbsub/Features/personal_details/logic/personal_details_cubit.dart';
 
 class CutomUpdatePasswordTextFormFeild extends StatelessWidget {
   const CutomUpdatePasswordTextFormFeild({

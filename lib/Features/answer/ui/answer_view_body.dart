@@ -26,7 +26,6 @@ class AnswerViewBody extends StatelessWidget {
         } else if (snapshot.connectionState == ConnectionState.done) {
           var of = BlocProvider.of<AnswerCubit>(context);
           return Container(
-            height: 400.h,
             margin: EdgeInsets.symmetric(horizontal: 20.w),
             padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
             decoration: ShapeDecoration(
@@ -39,6 +38,8 @@ class AnswerViewBody extends StatelessWidget {
               ),
             ),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Row(
                   children: [
@@ -57,8 +58,11 @@ class AnswerViewBody extends StatelessWidget {
                 SizedBox(
                   height: 20.h,
                 ),
-                CustomContentElement(
-                  content: of.answerModel.answer.content,
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16.w),
+                  child: CustomContentElement(
+                    content: of.answerModel.answer.content,
+                  ),
                 ),
               ],
             ),

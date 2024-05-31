@@ -10,7 +10,7 @@ class ServerFailure extends Failure {
   factory ServerFailure.fromdioException(DioException dioException) {
     switch (dioException.type) {
       case DioExceptionType.connectionTimeout:
-        return ServerFailure('يوجد مشكلة في الخادم يتم العمل عليه حاليا');
+        return ServerFailure('تاكد من الاتصال من الانترنت');
       case DioExceptionType.sendTimeout:
         return ServerFailure('فشل الأرسال تاكد من الاتصال من الانترنت');
       case DioExceptionType.receiveTimeout:
@@ -23,7 +23,7 @@ class ServerFailure extends Failure {
       case DioExceptionType.cancel:
         return ServerFailure('errMessage');
       case DioExceptionType.connectionError:
-        return ServerFailure('فشل في الاتصال');
+        return ServerFailure('لا يوجد اتصال بالأنترنت');
       case DioExceptionType.unknown:
         if (dioException.message!.contains('SocketException')) {
           return ServerFailure('لا يوجد اتصال بالأنترنت');

@@ -77,11 +77,19 @@ class BmiCubit extends Cubit<BmiState> {
   late double yourBmI;
   void calculateBMI(double weight, double height) {
     height = height / 100;
-    yourBmI = weight / (height * height);
+    yourBmI = (weight / (height * height)).roundToDouble();
   }
 
   Future<void> postBMI(int userId, value) async {
-    Map data = {"userid": userId, "value": value};
+    Map data = {
+      "userid": userId,
+      "value": value,
+      "year": DateTime.now().year.toString(),
+      "month": DateTime.now().month.toString(),
+      "day": DateTime.now().day.toString(),
+      "hour": DateTime.now().hour.toString(),
+      "minute": DateTime.now().minute.toString()
+    };
     emit(BMILoadingaddingValue());
     var reposne = await _repo.postBMI(data: data);
     reposne.fold(

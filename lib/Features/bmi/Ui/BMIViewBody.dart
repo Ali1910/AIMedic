@@ -38,7 +38,7 @@ class BmiViewBody extends StatelessWidget {
                       width: 5.w,
                     ),
                     Text(
-                      of.bmivalue.substring(0, 5),
+                      of.bmivalue,
                       style: Styles.style24.copyWith(),
                     ),
                   ],

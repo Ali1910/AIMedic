@@ -5,7 +5,7 @@ import 'package:gbsub/Core/services/sharedpref.dart';
 import 'package:gbsub/Core/utilts/constans.dart';
 import 'package:gbsub/Features/booking_history/logic/boking_history_cubit.dart';
 import 'package:gbsub/Features/booking_history/logic/booking_history_states.dart';
-import 'package:gbsub/Features/booking_history/ui/widgets/success_empty_body.dart';
+import 'package:gbsub/Core/utilts/widgets/success_empty_body.dart';
 import 'package:gbsub/Features/booking_history/ui/widgets/success_has_data_body.dart';
 import 'package:gbsub/Features/doctor_booking/logic/booking_cubit.dart';
 import 'package:gbsub/core/utilts/style.dart';
