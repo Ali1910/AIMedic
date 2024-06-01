@@ -3,29 +3,32 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gbsub/Core/utilts/constans.dart';
 import 'package:gbsub/Core/utilts/style.dart';
+import 'package:gbsub/Features/booking_history/data/appointment_data_model_dto.dart.dart';
+
 import 'package:gbsub/Features/doctor_booking/logic/booking_cubit.dart';
 
 class CustomDatePickerForUpdate extends StatelessWidget {
-  CustomDatePickerForUpdate({super.key, required this.doctorid});
+  CustomDatePickerForUpdate({super.key, required this.appointmentDataModel});
 
-  final int doctorid;
+  final AppointmentDateModelDTO appointmentDataModel;
   final EasyInfiniteDateTimelineController controller =
       EasyInfiniteDateTimelineController();
 
   @override
   Widget build(BuildContext context) {
     return EasyDateTimeLine(
-      initialDate: BlocProvider.of<BookingCubit>(context).dateTime,
+      initialDate: DateTime(
+          int.parse(appointmentDataModel.year),
+          int.parse(appointmentDataModel.month),
+          int.parse(appointmentDataModel.day)),
       onDateChange: (selectedDate) {
         var of = BlocProvider.of<BookingCubit>(context);
-        of.year = selectedDate.year.toString();
-        of.day = selectedDate.day.toString();
-        of.month = selectedDate.month.toString();
+
         of.getTimesForDoctor(
-          doctorid: doctorid,
-          year: of.year,
-          day: of.day,
-          month: of.month,
+          doctorid: appointmentDataModel.id,
+          year: selectedDate.year.toString(),
+          day: selectedDate.day.toString(),
+          month: selectedDate.month.toString(),
         );
       },
       locale: "ar",

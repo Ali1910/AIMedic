@@ -15,7 +15,7 @@ class BookingCubit extends Cubit<BookingStates> {
   late String appointmentTime;
   late int doctorid;
   late int timeid;
-  late DateTime dateTime;
+
   String month = DateTime.now().month.toString();
   String year = DateTime.now().year.toString();
   String day = DateTime.now().day.toString();

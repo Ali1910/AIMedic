@@ -5,4 +5,5 @@ import 'package:gbsub/Features/booking_history/data/appointment_data_model_dto.d
 abstract class UpcomingRepo {
   Future<Either<Failure, List<AppointmentDateModelDTO>>>
       fetchUPcomingAppointments(int userId);
+  Future<Either<Failure, bool>> deleteUpcomingappointmnet(int appid);
 }

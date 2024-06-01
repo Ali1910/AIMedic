@@ -37,7 +37,7 @@ class BookingUpdateViewBody extends StatelessWidget {
             style: Styles.style20.copyWith(),
           ),
           CustomDatePickerForUpdate(
-            doctorid: appDataModel.dcotorid,
+            appointmentDataModel: appDataModel,
           ),
           SizedBox(
             height: 10.h,

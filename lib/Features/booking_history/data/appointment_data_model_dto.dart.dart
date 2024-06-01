@@ -12,6 +12,7 @@ class AppointmentDateModelDTO {
   final String doctorSpec;
   final int fee;
   final String univ;
+  final bool rated;
 
   AppointmentDateModelDTO(
       {required this.appointmentTime,
@@ -26,7 +27,8 @@ class AppointmentDateModelDTO {
       required this.timeid,
       required this.year,
       required this.fee,
-      required this.univ});
+      required this.univ,
+      required this.rated});
 
   factory AppointmentDateModelDTO.fromjson(json) {
     return AppointmentDateModelDTO(
@@ -43,6 +45,7 @@ class AppointmentDateModelDTO {
       year: json['year'],
       fee: json['fee'],
       univ: json['unviersity'],
+      rated: json['rated'],
     );
   }
 }

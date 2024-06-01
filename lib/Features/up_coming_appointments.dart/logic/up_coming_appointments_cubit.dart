@@ -19,4 +19,19 @@ class UpComingAppointmentsCubit extends Cubit<UpComingAppointmentsState> {
       ),
     );
   }
+
+  late bool value;
+
+  Future<bool> deleteAppointMents(int appointmentId) async {
+    var response = await _repo.deleteUpcomingappointmnet(appointmentId);
+    response.fold(
+      (l) {
+        value = false;
+      },
+      (r) {
+        value = true;
+      },
+    );
+    return value;
+  }
 }

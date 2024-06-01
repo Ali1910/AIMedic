@@ -1,14 +1,13 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gbsub/Core/services/sharedpref.dart';
 import 'package:gbsub/Core/utilts/constans.dart';
 import 'package:gbsub/Core/utilts/widgets/custom_snack_bar.dart';
 import 'package:gbsub/Features/booking_history/data/appointment_data_model_dto.dart.dart';
-import 'package:gbsub/Features/booking_history/logic/boking_history_cubit.dart';
-import 'package:gbsub/Features/booking_history/ui/widgets/custom_booking_item_button.dart';
-import 'package:gbsub/Features/booking_history/ui/widgets/custom_dialog.dart';
-import 'package:gbsub/Features/doctor_booking/logic/booking_cubit.dart';
+
 import 'package:gbsub/Features/doctor_booking/ui/update_booking/booking_update_view.dart';
+import 'package:gbsub/Features/up_coming_appointments.dart/logic/up_coming_appointments_cubit.dart';
+import 'package:gbsub/Features/up_coming_appointments.dart/ui/widgets/custom_booking_item_button.dart';
 
 class CustomBookingItemButtonsRow extends StatelessWidget {
   const CustomBookingItemButtonsRow({
@@ -24,7 +23,6 @@ class CustomBookingItemButtonsRow extends StatelessWidget {
       children: [
         CustomBookingButton(
           onPressed: () async {
-            var of = BlocProvider.of<BookingCubit>(context);
             if ((DateTime.now().month >
                 int.parse(appointment.month))) //old month
             {
@@ -46,46 +44,38 @@ class CustomBookingItemButtonsRow extends StatelessWidget {
                     context, 'لا يمكن تعديل هذا الميعاد نظرا لضيق الوقت');
               } else // more than one hour diff
               {
-                await updateFunction(of, context);
+                await updateFunction(context);
               }
             } else {
-              await updateFunction(of, context);
+              await updateFunction(context);
             }
           },
           text: 'تعديل',
           textcolor: Colors.white,
           buttonColor: mainColor,
         ),
-        BlocProvider(
-          create: (context) => BookingHistroyCubit(dio: Dio()),
-          child: CustomBookingButton(
-            onPressed: () async {
-              showDialog(
-                context: context,
-                builder: (context) {
-                  return Customdialog(appointment: appointment);
-                },
+        CustomBookingButton(
+          onPressed: () async {
+            var of = BlocProvider.of<UpComingAppointmentsCubit>(context);
+            bool checker = await of.deleteAppointMents(appointment.id);
+            if (checker) {
+              await of.fetchAppointments(
+                Sharedhelper.getintdata(intkey),
               );
-            },
-            text: 'الغاء',
-            textcolor: mainColor,
-            buttonColor: Colors.white,
-          ),
+            } else {
+              customSnackBar(context, 'لا يمكن حذف هذا الميعاد نظرا لضيق الوقت',
+                  duration: 1500);
+            }
+          },
+          text: 'الغاء',
+          textcolor: mainColor,
+          buttonColor: Colors.white,
         ),
       ],
     );
   }
 
-  Future<void> updateFunction(BookingCubit of, BuildContext context) async {
-    of.dateTime = DateTime(int.parse(appointment.year),
-        int.parse(appointment.month), int.parse(appointment.day));
-
-    await of.getTimesForDoctor(
-        doctorid: appointment.dcotorid,
-        year: appointment.year,
-        day: appointment.day,
-        month: appointment.month);
-
+  Future<void> updateFunction(BuildContext context) async {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(

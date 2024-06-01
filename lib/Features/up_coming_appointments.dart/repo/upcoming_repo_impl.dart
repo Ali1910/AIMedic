@@ -27,4 +27,15 @@ class UpcomingRepoImpl extends UpcomingRepo {
       return left(exceptionMethod(ex));
     }
   }
+
+  @override
+  Future<Either<Failure, bool>> deleteUpcomingappointmnet(int appid) async {
+    try {
+      var repsponse = await aPiService.delete(
+          endpoint: '/AppointmentContoller?AppontmentId=$appid');
+      return right(repsponse.data);
+    } catch (ex) {
+      return left(exceptionMethod(ex));
+    }
+  }
 }
