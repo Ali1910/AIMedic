@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gbsub/Core/cubits/main_cubit.dart';
 import 'package:gbsub/Core/services/api_services.dart';
 import 'package:gbsub/Core/services/sharedpref.dart';
 import 'package:gbsub/Core/utilts/constans.dart';
@@ -22,6 +23,7 @@ class BookingHistoryView extends StatelessWidget {
       child: DefaultTabController(
         length: 3,
         child: Scaffold(
+          key: BlocProvider.of<MainCubit>(context).scaffoldKey,
           appBar: AppBar(
             backgroundColor: Colors.white,
             centerTitle: true,

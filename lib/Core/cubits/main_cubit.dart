@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,6 +13,7 @@ class MainCubit extends Cubit<MainStates> {
   MainCubit() : super(InitialState());
   int currentIndex = 0;
   bool loggedin = false;
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   List<Widget> bottomnavigationbarviews = [
     const HomeViewBody(),

@@ -22,7 +22,7 @@ class CustomBookingButton extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         backgroundColor: buttonColor,
         side: BorderSide(color: mainColor),
-        minimumSize: Size(148.w, 38.h),
+        minimumSize: Size(MediaQuery.of(context).size.width * 0.7, 38.h),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(24),
         ),
