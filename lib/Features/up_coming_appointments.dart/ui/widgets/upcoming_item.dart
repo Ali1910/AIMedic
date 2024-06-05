@@ -46,7 +46,7 @@ class CustomUpcomingBookingHistoryItem extends StatelessWidget {
               }
             }
           },
-          backgroundColor: Colors.red,
+          backgroundColor: Colors.grey,
           icon: FontAwesomeIcons.cancel,
           label: "الغاء",
         )

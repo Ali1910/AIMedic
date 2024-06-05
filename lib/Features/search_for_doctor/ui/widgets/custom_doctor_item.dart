@@ -23,7 +23,7 @@ class CustomDoctorItem extends StatelessWidget {
           univ: doctorDataModel.university,
           fee: doctorDataModel.fee,
           location: doctorDataModel.loaction,
-          rating: doctorDataModel.rating,
+          rating: doctorDataModel.rating.toString(),
         )
       ],
     );

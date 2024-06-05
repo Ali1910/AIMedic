@@ -28,7 +28,7 @@ class DoctorDataModel {
         phoneNumber: json['phoneNumber'],
         pic: json['profilePic'],
         university: json['universiry'],
-        rating: json['rating'].toString(),
+        rating: json['rating'].toStringAsFixed(2),
         loaction: json['location']);
   }
 }

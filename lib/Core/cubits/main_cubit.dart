@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,6 +16,7 @@ class MainCubit extends Cubit<MainStates> {
   int currentIndex = 0;
   bool loggedin = false;
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  final dio = Dio();
 
   List<Widget> bottomnavigationbarviews = [
     const HomeViewBody(),
@@ -103,7 +106,6 @@ class MainCubit extends Cubit<MainStates> {
   }
 
   Future<List<QuestionDetails>> getMyQuetions() async {
-    final dio = Dio();
     questions = [];
     try {
       emit(FetchingQuestionLoading());
@@ -124,5 +126,23 @@ class MainCubit extends Cubit<MainStates> {
     }
   }
 
-  //BMI
+  //RatingAndComment
+  String? comment;
+  late double ratingValue;
+  Future<bool> addRating(
+    int doctorId,
+    int appoinmentid,
+    String? comment,
+    double rating,
+  ) async {
+    try {
+      await dio.post(
+          '$baseUrl/RatingAndComments?doctorid=$doctorId&appointmnetId=$appoinmentid&userId=${Sharedhelper.getintdata(intkey)}&rating=${rating.toString()}&comment=$comment');
+      emit(RatingAndComment());
+      return true;
+    } catch (ex) {
+      print(ex.toString());
+      return false;
+    }
+  }
 }

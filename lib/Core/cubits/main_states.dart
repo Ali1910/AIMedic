@@ -19,3 +19,5 @@ class FetchingQuestionFailing extends MainStates {}
 class PublicQuestionTapped extends MainStates {}
 
 class Myquestionstapped extends MainStates {}
+
+class RatingAndComment extends MainStates {}
