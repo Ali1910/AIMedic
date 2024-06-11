@@ -27,9 +27,10 @@ class Question {
 
 class User {
   final String gender;
+  final int id;
 
-  User({required this.gender});
+  User({required this.gender, required this.id});
   factory User.json(json) {
-    return User(gender: json['gender']);
+    return User(gender: json['gender'], id: json["id"]);
   }
 }

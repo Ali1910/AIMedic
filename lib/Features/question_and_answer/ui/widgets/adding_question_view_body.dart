@@ -71,8 +71,9 @@ class AddingQuestionViewBody extends StatelessWidget {
                             bool state = await of
                                 .postQUestion(Sharedhelper.getintdata(intkey));
                             if (state) {
+                              of.getAllQuetions();
                               Navigator.pop(context);
-                              await of.getAllQuetions();
+                              // await of.getAllQuetions();
                             } else {
                               customSnackBar(
                                   context, 'لم يتم إضافة سؤالك حاول مرة أخرى');

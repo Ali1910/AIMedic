@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:ffi';
 
 import 'package:dio/dio.dart';
@@ -123,6 +124,23 @@ class MainCubit extends Cubit<MainStates> {
     } on Exception catch (e) {
       emit(FetchingQuestionFailing());
       return [];
+    }
+  }
+
+  Future<bool> deleteMyquestion(int questionId) async {
+    emit(FetchingQuestionLoading());
+    try {
+      await dio.delete("$baseUrl/Question?id=$questionId");
+      for (var element in questions) {
+        if (element.question.id == questionId) {
+          questions.remove(element);
+        }
+        emit(FetchingQuestionSucsess());
+      }
+      return true;
+    } catch (ex) {
+      emit(FetchingQuestionFailing());
+      return false;
     }
   }
 

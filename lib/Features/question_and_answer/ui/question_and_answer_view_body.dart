@@ -6,6 +6,8 @@ import 'package:gbsub/Core/cubits/main_cubit.dart';
 import 'package:gbsub/Core/cubits/main_states.dart';
 import 'package:gbsub/Core/utilts/constans.dart';
 import 'package:gbsub/Core/utilts/style.dart';
+import 'package:gbsub/Core/utilts/widgets/failed_body.dart';
+import 'package:gbsub/Core/utilts/widgets/loading_body.dart';
 import 'package:gbsub/Features/question_and_answer/ui/widgets/custom_custom_question_item_list_view.dart';
 import 'package:gbsub/Features/question_and_answer/ui/widgets/custom_tab_bar.dart';
 import 'package:gbsub/Features/question_and_answer/ui/widgets/question_upper_body.dart';
@@ -34,11 +36,7 @@ class QuestionAndAnswerViewBody extends StatelessWidget {
                       height: 10.h,
                     ),
                     state is FetchingQuestionLoading
-                        ? Center(
-                            child: CircularProgressIndicator(
-                              color: mainColor,
-                            ),
-                          )
+                        ? const LoadingBody()
                         : state is FetchingQuestionSucsess &&
                                 of.questions.isNotEmpty
                             ? CustomListViewQuestionElement(of: of)
@@ -62,13 +60,9 @@ class QuestionAndAnswerViewBody extends StatelessWidget {
                                       ],
                                     ),
                                   )
-                                : Center(
-                                    child: Text(
-                                      "تأكد من الأتصال بالأنترنت",
-                                      style: Styles.style16
-                                          .copyWith(color: mainColor),
-                                    ),
-                                  ),
+                                : const FailedBody(
+                                    text: '"تأكد من الأتصال بالأنترنت"',
+                                  )
                   ],
                 );
               },

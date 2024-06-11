@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:gbsub/Core/cubits/main_cubit.dart';
+import 'package:gbsub/Core/services/sharedpref.dart';
 import 'package:gbsub/Core/utilts/constans.dart';
+import 'package:gbsub/Core/utilts/widgets/custom_snack_bar.dart';
 import 'package:gbsub/Features/profile_page/ui/widgets/custom_profile_view_body_divider.dart';
 import 'package:gbsub/Features/question_and_answer/ui/widgets/custom_show_answer.dart';
 import 'package:gbsub/Features/question_and_answer/ui/widgets/cutom_question_gender.dart';
@@ -13,11 +18,13 @@ class CustomQuestionElement extends StatelessWidget {
     required this.gender,
     required this.answered,
     required this.id,
+    required this.userid,
   });
   final String content;
   final String gender;
   final bool answered;
   final int id;
+  final int userid;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -33,8 +40,35 @@ class CustomQuestionElement extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CustomQuestionGender(
-            gender: gender,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              CustomQuestionGender(
+                gender: gender,
+              ),
+              userid == Sharedhelper.getintdata(intkey)
+                  ? IconButton(
+                      onPressed: () async {
+                        var of = BlocProvider.of<MainCubit>(context);
+                        bool checker = await of.deleteMyquestion(id);
+                        if (!checker) {
+                          if (context.mounted) {
+                            customSnackBar(context, 'تأكد من الأتصال بالانترنت',
+                                correctColors: false);
+                          }
+                        }
+                      },
+                      icon: Icon(
+                        FontAwesomeIcons.trashCan,
+                        color: mainColor,
+                        size: 20.w,
+                      ),
+                    )
+                  : const SizedBox(
+                      height: 0,
+                      width: 0,
+                    )
+            ],
           ),
           SizedBox(
             height: 20.h,

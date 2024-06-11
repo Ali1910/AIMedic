@@ -22,6 +22,7 @@ class CustomListViewQuestionElement extends StatelessWidget {
             gender: of.questions[index].user.gender,
             answered: of.questions[index].question.answered,
             id: of.questions[index].question.id,
+            userid: of.questions[index].user.id,
           );
         },
         separatorBuilder: (BuildContext context, int index) {
