@@ -57,14 +57,13 @@ Future<void> readNfcData(context) async {
 
 Future<bool> loginusingNFC(String nfc) async {
   final Dio dio = Dio();
-  var response;
+
   try {
-    response = await dio.get('$baseUrl/User/LoginUsingNfc?NFC=$nfc');
+    var response = await dio.get('$baseUrl/User/LoginUsingNfc?NFC=$nfc');
     Sharedhelper.putIntdata(intkey, response.data);
     Sharedhelper.putBooldata(boolkey, true);
     return true;
   } on Exception catch (e) {
-    print(e.toString());
     return false;
   }
 }
