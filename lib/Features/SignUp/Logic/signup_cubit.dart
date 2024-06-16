@@ -53,7 +53,7 @@ class SignUpCubit extends Cubit<SignUpStates> {
   File? selectedImage;
   Future pickImageFromGallery() async {
     final returnedImage =
-        await ImagePicker().pickImage(source: ImageSource.camera);
+        await ImagePicker().pickImage(source: ImageSource.gallery);
     if (returnedImage == null) {
       return null;
     }

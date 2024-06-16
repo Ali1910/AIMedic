@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,6 +8,7 @@ import 'package:gbsub/Core/utilts/constans.dart';
 import 'package:gbsub/Features/Login/Ui/login_view.dart';
 import 'package:gbsub/Features/profile_page/data/profile_model.dart';
 import 'package:gbsub/Features/profile_page/logic/profile_states.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ProfileCubit extends Cubit<ProfileStates> {
   ProfileCubit() : super(ProfileInitialState());
@@ -16,6 +19,28 @@ class ProfileCubit extends Cubit<ProfileStates> {
   Future<void> getprofiledetails(int id) async {
     var response = await dio.get('$baseUrl/User/GetPofileDetailes?id=$id');
     profileModel = ProfileModel.fromjson(response.data);
+  }
+
+  Future<bool> updateProfilePic() async {
+    File? selectedImage;
+    final returnedImage =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (returnedImage == null) {
+      return false;
+    } else {
+      selectedImage = File(returnedImage.path);
+      var data = FormData.fromMap({
+        'image': await MultipartFile.fromFile(selectedImage.path),
+        "UserId": Sharedhelper.getintdata(intkey),
+      });
+      try {
+        await dio.put('$baseUrl/User/UpdateProfilePic', data: data);
+        emit(profileImageUpdatedSuccessfully());
+        return true;
+      } catch (ex) {
+        return false;
+      }
+    }
   }
 
   void logout(context) async {
