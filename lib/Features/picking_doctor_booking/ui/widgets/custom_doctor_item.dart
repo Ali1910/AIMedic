@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gbsub/Core/utilts/constans.dart';
 import 'package:gbsub/Features/picking_doctor_booking/data/doctor_data_model.dart';
 import 'package:gbsub/Features/picking_doctor_booking/ui/widgets/custom_doctor_detials_item.dart';
 import 'package:gbsub/Features/picking_doctor_booking/ui/widgets/custom_doctor_pic_item.dart';
@@ -16,7 +17,7 @@ class CustomDoctorItem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         CustomPictureItem(
-          pic: doctorDataModel.pic,
+          pic: '$imageUrl${doctorDataModel.pic}',
         ),
         CustomDoctorsDetailsItem(
           name: doctorDataModel.name,

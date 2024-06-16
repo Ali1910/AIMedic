@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gbsub/Core/utilts/constans.dart';
 import 'package:gbsub/Core/utilts/style.dart';
 import 'package:gbsub/Features/personal_details/ui/personal_details_view.dart';
 import 'package:gbsub/Features/profile_page/data/profile_model.dart';
@@ -26,9 +27,8 @@ class CustomProfileConatiner extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            const CustomProfilePictuteProfileView(
-                pic:
-                    'https://crowdcreate.s3.amazonaws.com/uploads/idea/image/254/kids_wearing_sunglasses.jpg'),
+            CustomProfilePictuteProfileView(
+                pic: '$imageUrl${profileModel.pic}'),
             SizedBox(
               height: 5.h,
             ),
