@@ -37,7 +37,7 @@ class CustomBmiREcoredElementBody extends StatelessWidget {
         title: 'تاريخ أخذ القراءة',
         subtitle:
             '${read.year}-${read.month}-${read.day} ${read.hour}:${read.minute}',
-        titlestyle: Styles.styleBold16.copyWith(color: Colors.white),
+        titlestyle: Styles.style14.copyWith(color: Colors.white),
         subtitleStyle: Styles.style14.copyWith(color: Colors.white),
       ),
     );

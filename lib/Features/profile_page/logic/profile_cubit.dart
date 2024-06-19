@@ -17,8 +17,10 @@ class ProfileCubit extends Cubit<ProfileStates> {
 
   final Dio dio = Dio();
   Future<void> getprofiledetails(int id) async {
-    var response = await dio.get('$baseUrl/User/GetPofileDetailes?id=$id');
-    profileModel = ProfileModel.fromjson(response.data);
+    try {
+      var response = await dio.get('$baseUrl/User/GetPofileDetailes?id=$id');
+      profileModel = ProfileModel.fromjson(response.data);
+    } catch (ex) {}
   }
 
   Future<bool> updateProfilePic() async {
@@ -34,8 +36,9 @@ class ProfileCubit extends Cubit<ProfileStates> {
         "UserId": Sharedhelper.getintdata(intkey),
       });
       try {
+        emit(ProfileImageUpdatedLoading());
         await dio.put('$baseUrl/User/UpdateProfilePic', data: data);
-        emit(profileImageUpdatedSuccessfully());
+        emit(ProfileImageUpdatedSuccessfully());
         return true;
       } catch (ex) {
         return false;
@@ -43,10 +46,9 @@ class ProfileCubit extends Cubit<ProfileStates> {
     }
   }
 
-  void logout(context) async {
+  Future<void> logout(context) async {
     await Sharedhelper.putBooldata(boolkey, false);
     await Sharedhelper.deleteInt(intkey);
-    emit(Updatekey());
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(

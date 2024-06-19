@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gbsub/Core/cubits/main_cubit.dart';
 import 'package:gbsub/Core/services/sharedpref.dart';
 import 'package:gbsub/Core/utilts/constans.dart';
 import 'package:gbsub/Core/utilts/style.dart';
@@ -12,7 +11,6 @@ import 'package:gbsub/Features/bmi/Ui/widgets/CustomSlider.dart';
 import 'package:gbsub/Features/bmi/Ui/widgets/CustomWeight&AgeContainer.dart';
 import 'package:gbsub/Features/bmi/logic/cubit/bmi_cubit.dart';
 import 'package:gbsub/Features/bmi/logic/cubit/bmi_state.dart';
-import 'package:gbsub/Features/news/logic/news_states.dart';
 
 class BmiViewBody extends StatelessWidget {
   const BmiViewBody({super.key});

@@ -28,7 +28,7 @@ class CustomDoneBookingHistoryItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               CutomBookingItemImage(
-                pic: appointmentDateModelDTO.doctorPic,
+                pic: "$imageUrl${appointmentDateModelDTO.doctorPic}",
               ),
               CustomBookingItemDoctorInformations(
                   name: appointmentDateModelDTO.doctorName,

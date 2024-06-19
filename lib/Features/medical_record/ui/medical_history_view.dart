@@ -52,10 +52,10 @@ class MedicalHistoryView extends StatelessWidget {
                       ..getAllReadsForUser(
                         Sharedhelper.getintdata(intkey),
                       ),
-                child: BMIMedicalRecordBody(),
+                child: const BMIMedicalRecordBody(),
               ),
-              VitalReadingsViewBody(),
-              MedicalVisitsrecordViewbody()
+              const VitalReadingsViewBody(),
+              const MedicalVisitsrecordViewbody()
             ],
           ),
         ),

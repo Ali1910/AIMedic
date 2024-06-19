@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gbsub/Core/cubits/main_cubit.dart';
 import 'package:gbsub/Core/cubits/main_states.dart';
-import 'package:gbsub/Core/utilts/constans.dart';
 import 'package:gbsub/Core/utilts/style.dart';
 import 'package:gbsub/Core/utilts/widgets/failed_body.dart';
 import 'package:gbsub/Core/utilts/widgets/loading_body.dart';

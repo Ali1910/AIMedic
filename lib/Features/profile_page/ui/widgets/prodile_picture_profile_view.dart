@@ -31,6 +31,7 @@ class CustomProfilePictuteProfileView extends StatelessWidget {
             radius: 12.w,
             backgroundColor: Colors.white,
             child: IconButton(
+              padding: EdgeInsets.zero,
               onPressed: () {
                 BlocProvider.of<ProfileCubit>(context).updateProfilePic();
               },

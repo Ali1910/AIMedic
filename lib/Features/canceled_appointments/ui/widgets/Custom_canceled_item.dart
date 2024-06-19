@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gbsub/Core/utilts/constans.dart';
 import 'package:gbsub/Core/utilts/style.dart';
 import 'package:gbsub/Features/booking_history/data/appointment_data_model_dto.dart.dart';
 import 'package:gbsub/Features/booking_history/ui/widgets/custom_booking_item_doctor_info.dart';
@@ -25,7 +26,7 @@ class CustomCanceledItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               CutomBookingItemImage(
-                pic: appointmentDateModelDTO.doctorPic,
+                pic: "$imageUrl${appointmentDateModelDTO.doctorPic}",
               ),
               CustomBookingItemDoctorInformations(
                   name: appointmentDateModelDTO.doctorName,

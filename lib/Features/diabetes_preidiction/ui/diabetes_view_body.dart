@@ -30,7 +30,7 @@ class DiaBetesViewBody extends StatelessWidget {
                     children: [
                       const Spacer(),
                       Customelevatedbutton(
-                          text: 'text',
+                          text: 'تنبؤ',
                           onPressed: () async {
                             if (of.key.currentState!.validate()) {
                               BlocProvider.of<DiabetesCubit>(context).predict();

@@ -44,7 +44,7 @@ class AnswerViewBody extends StatelessWidget {
                 Row(
                   children: [
                     CustomImageElement(
-                      image: of.answerModel.doctor.doctorPic,
+                      image: "$imageUrl${of.answerModel.doctor.doctorPic}",
                     ),
                     SizedBox(
                       width: 10.w,

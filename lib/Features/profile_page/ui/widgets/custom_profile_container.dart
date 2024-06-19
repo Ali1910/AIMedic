@@ -3,9 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gbsub/Core/utilts/constans.dart';
 import 'package:gbsub/Core/utilts/style.dart';
+import 'package:gbsub/Core/utilts/widgets/loading_body.dart';
 import 'package:gbsub/Features/personal_details/ui/personal_details_view.dart';
 import 'package:gbsub/Features/profile_page/data/profile_model.dart';
 import 'package:gbsub/Features/profile_page/logic/profile_cubit.dart';
+import 'package:gbsub/Features/profile_page/logic/profile_states.dart';
 import 'package:gbsub/Features/profile_page/logic/read_nfc.dart';
 import 'package:gbsub/Features/profile_page/ui/widgets/custom_profile_view_body_divider.dart';
 import 'package:gbsub/Features/profile_page/ui/widgets/custom_profile_view_body_item.dart';
@@ -27,8 +29,14 @@ class CustomProfileConatiner extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            CustomProfilePictuteProfileView(
-                pic: '$imageUrl${profileModel.pic}'),
+            BlocBuilder<ProfileCubit, ProfileStates>(
+              builder: (context, state) {
+                return state is ProfileImageUpdatedLoading
+                    ? const LoadingBody()
+                    : CustomProfilePictuteProfileView(
+                        pic: '$imageUrl${profileModel.pic}');
+              },
+            ),
             SizedBox(
               height: 5.h,
             ),
@@ -83,8 +91,8 @@ class CustomProfileConatiner extends StatelessWidget {
             ),
             const CustomDivider(),
             CustomProfileViewBodyItem(
-              onTap: () {
-                BlocProvider.of<ProfileCubit>(context).logout(context);
+              onTap: () async {
+                await BlocProvider.of<ProfileCubit>(context).logout(context);
               },
               text: 'تسجيل الخروج',
               imageUrl: 'assets/images/logout.png',

@@ -32,7 +32,7 @@ class CustomHealthAdviceItem extends StatelessWidget {
           Row(
             children: [
               CustomImageElement(
-                image: healthAdviceModel.doctor.doctorPic,
+                image: '$imageUrl${healthAdviceModel.doctor.doctorPic}',
               ),
               SizedBox(
                 width: 10.w,

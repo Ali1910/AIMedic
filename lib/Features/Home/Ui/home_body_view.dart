@@ -5,12 +5,13 @@ import 'package:gbsub/Features/Home/Ui/widgets/custom_body_continer_list_view.da
 import 'package:gbsub/Features/Home/Ui/widgets/custom_medication_info_list_view.dart';
 import 'package:gbsub/Features/Home/Ui/widgets/custom_news_container.dart';
 import 'package:gbsub/Features/Home/Ui/widgets/custom_tab_bar_list_view.dart';
-import 'package:gbsub/Features/body_parts/ui/diagnosis_view.dart';
+
 import 'package:gbsub/Features/covid19_radiography/ui/coivid19_view.dart';
-import 'package:gbsub/Features/covid19_radiography/ui/covid19_view_body.dart';
+
 import 'package:gbsub/Features/diabetes_preidiction/ui/diabetes_view.dart';
 import 'package:gbsub/Features/speciality_booking_doctor/Ui/speciality_view.dart';
 import 'package:gbsub/Features/speciality_contact_doctor/Ui/speciality_view.dart';
+import 'package:gbsub/Features/syptoms/ui/syptoms_view.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({
@@ -52,7 +53,7 @@ class HomeViewBody extends StatelessWidget {
               text1: 'تشخيص',
               text2: 'سكر الدم',
               text3: 'كوفيد 19',
-              widget1: DiagnosisView(),
+              widget1: SyptomsView(),
               widget2: DiabetesView(),
               widget3: Covid19View(),
             ),
@@ -61,17 +62,7 @@ class HomeViewBody extends StatelessWidget {
               height: 20.h,
             ),
             GestureDetector(
-                onTap: () {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //     builder: (context) {
-                  //       return const DrugContentView();
-                  //     },
-                  //   ),
-                  // );
-                },
-                child: const CustomMedicalInfoListView()),
+                onTap: () {}, child: const CustomMedicalInfoListView()),
           ],
         ),
       ),
