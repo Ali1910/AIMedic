@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gbsub/Features/up_coming_appointments.dart/logic/up_coming_appointments_state.dart';
 import 'package:gbsub/Features/up_coming_appointments.dart/repo/upcoming_repo.dart';
 
-class UpComingAppointmentsCubit extends Cubit<UpComingAppointmentsState> {
+class UpComingAppointmentsCubit extends Cubit<AppointmentHistory> {
   UpComingAppointmentsCubit(this._repo) : super(UpComingAppointmentsInitial());
 
   final UpcomingRepo _repo;

@@ -10,6 +10,7 @@ import 'package:gbsub/Core/utilts/widgets/custom_tab.dart';
 import 'package:gbsub/Features/bmi_medical_record/logic/cubit/bmi_record_cubit.dart';
 import 'package:gbsub/Features/bmi_medical_record/logic/repo/bmi_record_repo_implimentation.dart';
 import 'package:gbsub/Features/bmi_medical_record/ui/bmi_medical_record_view_body.dart';
+import 'package:gbsub/Features/medical_visits/logic/medical_visits_cubit.dart';
 import 'package:gbsub/Features/medical_visits/ui/medical_vistis_record_view_body.dart';
 import 'package:gbsub/Features/vital%20_readings/ui/vital_readings_medical_view_body.dart';
 
@@ -48,14 +49,14 @@ class MedicalHistoryView extends StatelessWidget {
             children: [
               BlocProvider(
                 create: (context) =>
-                    BmiRecordCubit(BMIRecordRepoImpl(APiService(Dio())))
-                      ..getAllReadsForUser(
-                        Sharedhelper.getintdata(intkey),
-                      ),
+                    BmiRecordCubit(BMIRecordRepoImpl(APiService(Dio()))),
                 child: const BMIMedicalRecordBody(),
               ),
               const VitalReadingsViewBody(),
-              const MedicalVisitsrecordViewbody()
+              BlocProvider(
+                create: (context) => MedicalVisitsCubit(Dio()),
+                child: const MedicalVisitsrecordViewbody(),
+              )
             ],
           ),
         ),

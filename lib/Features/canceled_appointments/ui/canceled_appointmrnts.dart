@@ -6,12 +6,13 @@ import 'package:gbsub/Core/utilts/widgets/success_empty_body.dart';
 import 'package:gbsub/Features/canceled_appointments/logic/canceled_appointments_cubit.dart';
 import 'package:gbsub/Features/canceled_appointments/logic/canceled_appointments_state.dart';
 import 'package:gbsub/Features/canceled_appointments/ui/widgets/success_body.dart';
+import 'package:gbsub/Features/up_coming_appointments.dart/logic/up_coming_appointments_state.dart';
 
 class CanceledAppointmentsBody extends StatelessWidget {
   const CanceledAppointmentsBody({super.key});
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CanceledAppointmentsCubit, CanceledAppointmentsState>(
+    return BlocBuilder<CanceledAppointmentsCubit, AppointmentHistory>(
       builder: (context, state) {
         if (state is CanceledAppointmentsFetchingFailed) {
           return FailedBody(text: state.failure);

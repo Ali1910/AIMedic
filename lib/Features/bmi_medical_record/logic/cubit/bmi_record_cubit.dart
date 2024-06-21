@@ -1,4 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gbsub/Core/services/sharedpref.dart';
+import 'package:gbsub/Core/utilts/constans.dart';
 import 'package:gbsub/Features/bmi_medical_record/logic/cubit/bmi_record_state.dart';
 import 'package:gbsub/Features/bmi_medical_record/logic/repo/bmi_record_repo.dart';
 
@@ -24,6 +26,7 @@ class BmiRecordCubit extends Cubit<BmiRecordState> {
       emit(DeleteUserReadFailed(error: l.errMessage));
     }, (r) {
       emit(DeleteUserReadSucceeded());
+      getAllReadsForUser(Sharedhelper.getintdata(intkey));
     });
   }
 }

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,6 +14,21 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Sharedhelper.sharedPreferencesinit();
   HttpOverrides.global = MyHttpOverrides();
+  await AwesomeNotifications().initialize(null, [
+    NotificationChannel(
+        channelGroupKey: "Basic_channel_group",
+        channelKey: 'basicChannel',
+        channelName: 'basicName',
+        channelDescription: "testNoticationChannels")
+  ], channelGroups: [
+    NotificationChannelGroup(
+        channelGroupKey: 'Basic_channel_group', channelGroupName: 'basciGroup')
+  ]);
+  bool isAllowedToSendNotification =
+      await AwesomeNotifications().isNotificationAllowed();
+  if (!isAllowedToSendNotification) {
+    AwesomeNotifications().requestPermissionToSendNotifications();
+  }
   runApp(const MyApp());
 }
 

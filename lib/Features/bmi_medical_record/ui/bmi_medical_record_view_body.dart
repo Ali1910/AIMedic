@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gbsub/Core/services/sharedpref.dart';
+import 'package:gbsub/Core/utilts/constans.dart';
 import 'package:gbsub/Core/utilts/widgets/failed_body.dart';
 import 'package:gbsub/Core/utilts/widgets/loading_body.dart';
 import 'package:gbsub/Core/utilts/widgets/success_empty_body.dart';
@@ -12,27 +14,33 @@ class BMIMedicalRecordBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<BmiRecordCubit, BmiRecordState>(
-      builder: (context, state) {
-        if (state is DeleteUserReadFailed) {
-          return FailedBody(
-            text: state.error,
+    return FutureBuilder(
+        future: BlocProvider.of<BmiRecordCubit>(context).getAllReadsForUser(
+          Sharedhelper.getintdata(intkey),
+        ),
+        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+          return BlocBuilder<BmiRecordCubit, BmiRecordState>(
+            builder: (context, state) {
+              if (state is DeleteUserReadFailed) {
+                return FailedBody(
+                  text: state.error,
+                );
+              } else if (state is GetUserReadsFailed) {
+                return FailedBody(
+                  text: state.error,
+                );
+              } else if (state is GetUserReadsSucceeded) {
+                return state.reads.isNotEmpty
+                    ? BMiGetreadsSuccessBody(
+                        reads: state.reads,
+                      )
+                    : const ScuccesEmptyBody(
+                        text: 'لا توجد قراءات أستخدم الحاسبة الخاصة بنا');
+              } else {
+                return const LoadingBody();
+              }
+            },
           );
-        } else if (state is GetUserReadsFailed) {
-          return FailedBody(
-            text: state.error,
-          );
-        } else if (state is GetUserReadsSucceeded) {
-          return state.reads.isNotEmpty
-              ? BMiGetreadsSuccessBody(
-                  reads: state.reads,
-                )
-              : const ScuccesEmptyBody(
-                  text: 'لا توجد قراءات أستخدم الحاسبة الخاصة بنا');
-        } else {
-          return const LoadingBody();
-        }
-      },
-    );
+        });
   }
 }

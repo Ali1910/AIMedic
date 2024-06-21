@@ -6,6 +6,7 @@ import 'package:gbsub/Core/utilts/constans.dart';
 import 'package:gbsub/Core/utilts/style.dart';
 import 'package:gbsub/Core/utilts/widgets/custom_elevated_button_button.dart';
 import 'package:gbsub/Core/utilts/widgets/custom_snack_bar.dart';
+import 'package:gbsub/Core/utilts/widgets/loading_body.dart';
 import 'package:gbsub/Features/bmi/Ui/widgets/CustomGenderConatinerBMI.dart';
 import 'package:gbsub/Features/bmi/Ui/widgets/CustomSlider.dart';
 import 'package:gbsub/Features/bmi/Ui/widgets/CustomWeight&AgeContainer.dart';
@@ -103,33 +104,34 @@ class BmiViewBody extends StatelessWidget {
                 const SizedBox(
                   height: 50,
                 ),
-                Customelevatedbutton(
-                    text: 'احسب',
-                    onPressed: () async {
-                      if (of.genderChecked()) {
-                        of.calculateBMI(of.initialWeightValue.toDouble(),
-                            of.slidervalue.toDouble());
-                        of.bmivalue = of.yourBmI.toString();
-                        await of.postBMI(
-                            Sharedhelper.getintdata(intkey), of.bmivalue);
-                        if (state is BMILoadingaddingValue) {
-                          customSnackBar(
-                              context, 'يتم أضافة القيمة الي السجل الخاص بك');
-                        }
-                        if (state is BMIAddValuefailed) {
-                          customSnackBar(context, state.failure);
-                        } else {
-                          customSnackBar(context, 'تم أضافة القيمة بنجاح');
-                        }
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            duration: Duration(seconds: 2),
-                            content: Text('من فضلك حدد نوعك '),
-                          ),
-                        );
-                      }
-                    }),
+                state is BMILoadingaddingValue
+                    ? const LoadingBody()
+                    : Customelevatedbutton(
+                        text: 'احسب',
+                        onPressed: () async {
+                          if (of.genderChecked()) {
+                            of.calculateBMI(of.initialWeightValue.toDouble(),
+                                of.slidervalue.toDouble());
+                            of.bmivalue = of.yourBmI.toString();
+                            await of.postBMI(
+                                Sharedhelper.getintdata(intkey), of.bmivalue);
+                            if (state is BMILoadingaddingValue) {
+                              customSnackBar(context,
+                                  'يتم أضافة القيمة الي السجل الخاص بك');
+                            }
+                            if (state is BMIAddValuefailed) {
+                              customSnackBar(context, state.failure);
+                            } else {
+                              customSnackBar(
+                                context,
+                                'تم أضافة القيمة بنجاح',
+                              );
+                            }
+                          } else {
+                            customSnackBar(context, 'من فضلك حدد نوعك ',
+                                correctColors: false);
+                          }
+                        }),
               ],
             ),
           );

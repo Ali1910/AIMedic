@@ -11,7 +11,7 @@ class UpComingAppointmentsBody extends StatelessWidget {
   const UpComingAppointmentsBody({super.key});
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<UpComingAppointmentsCubit, UpComingAppointmentsState>(
+    return BlocBuilder<UpComingAppointmentsCubit, AppointmentHistory>(
       builder: (context, state) {
         if (state is UpComingAppointmentsFetchingFailed) {
           return FailedBody(text: state.failure);

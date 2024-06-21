@@ -1,6 +1,9 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:gbsub/Core/services/notification_controller.dart';
+import 'package:gbsub/Core/utilts/widgets/custom_elevated_button_button.dart';
 import 'package:gbsub/Features/Home/Ui/widgets/custom_body_continer_list_view.dart';
 import 'package:gbsub/Features/Home/Ui/widgets/custom_medication_info_list_view.dart';
 import 'package:gbsub/Features/Home/Ui/widgets/custom_news_container.dart';
@@ -33,7 +36,7 @@ class HomeViewBody extends StatelessWidget {
             SizedBox(
               height: 20.h,
             ),
-            const CustomServiceRowCustomBodyContinerListView(
+            CustomServiceRowCustomBodyContinerListView(
               mainText: 'خدماتنا الطبية',
               icon1: FontAwesomeIcons.userDoctor,
               icon2: FontAwesomeIcons.squareWhatsapp,
@@ -43,7 +46,34 @@ class HomeViewBody extends StatelessWidget {
               text3: 'تذكيرات',
               widget1: SpecialityViewPicking(),
               widget2: SpecialityViewContact(),
-              widget3: Text('aa'),
+              widget3: Scaffold(
+                body: Center(
+                  child: Customelevatedbutton(
+                      text: '00',
+                      onPressed: () {
+                        AwesomeNotifications().setListeners(
+                            onActionReceivedMethod:
+                                NotificationController.onActionReceivedMethod,
+                            onDismissActionReceivedMethod:
+                                NotificationController
+                                    .onDismissActionReceivedMethod,
+                            onNotificationCreatedMethod: NotificationController
+                                .onNotificationCreatedMethod,
+                            onNotificationDisplayedMethod:
+                                NotificationController
+                                    .onNotificationDisplayedMethod);
+                        AwesomeNotifications().createNotification(
+                          content: NotificationContent(
+                            id: 1,
+                            channelKey: 'basicChannel',
+                            title: "تذكير بميعاد دواء",
+                            body:
+                                "لا تنسى تناول قرص الدواء الخاص بك المقرر في الساعة الخامسة ",
+                          ),
+                        );
+                      }),
+                ),
+              ),
             ),
             const CustomServiceRowCustomBodyContinerListView(
               mainText: 'خدماتنا الالكترونية',

@@ -1,8 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gbsub/Features/canceled_appointments/logic/canceled_appointments_state.dart';
 import 'package:gbsub/Features/canceled_appointments/repo/Canceled_repo.dart';
+import 'package:gbsub/Features/up_coming_appointments.dart/logic/up_coming_appointments_state.dart';
 
-class CanceledAppointmentsCubit extends Cubit<CanceledAppointmentsState> {
+class CanceledAppointmentsCubit extends Cubit<AppointmentHistory> {
   CanceledAppointmentsCubit(this._repo) : super(CanceledAppointmentsInitial());
 
   final CanceledRepo _repo;

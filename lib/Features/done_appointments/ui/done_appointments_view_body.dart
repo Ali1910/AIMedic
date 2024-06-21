@@ -7,12 +7,13 @@ import 'package:gbsub/Features/done_appointments/logic/Done_appointments_cubit.d
 import 'package:gbsub/Features/done_appointments/logic/Done_appointments_state.dart';
 
 import 'package:gbsub/Features/done_appointments/ui/widgets/Success_body.dart';
+import 'package:gbsub/Features/up_coming_appointments.dart/logic/up_coming_appointments_state.dart';
 
 class DoneAppointmentsBody extends StatelessWidget {
   const DoneAppointmentsBody({super.key});
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<DoneAppointmentsCubit, DoneAppointmentsState>(
+    return BlocBuilder<DoneAppointmentsCubit, AppointmentHistory>(
       builder: (context, state) {
         if (state is DoneAppointmentsFetchingFailed) {
           return FailedBody(text: state.failure);
