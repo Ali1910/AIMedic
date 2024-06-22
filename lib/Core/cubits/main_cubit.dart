@@ -8,9 +8,12 @@ import 'package:gbsub/Core/cubits/main_states.dart';
 import 'package:gbsub/Core/services/sharedpref.dart';
 import 'package:gbsub/Core/utilts/constans.dart';
 import 'package:gbsub/Features/Home/Ui/home_body_view.dart';
+import 'package:gbsub/Features/medication_reminder/data/medication_reminder_model.dart';
+import 'package:gbsub/Features/medication_reminder/logic/notification_logic.dart';
 import 'package:gbsub/Features/profile_page/ui/profile_view.dart';
 import 'package:gbsub/Features/question_and_answer/data/question.dart';
 import 'package:gbsub/Features/question_and_answer/ui/question_and_answer_view_body.dart';
+import 'package:hive/hive.dart';
 
 class MainCubit extends Cubit<MainStates> {
   MainCubit() : super(InitialState());
@@ -162,5 +165,48 @@ class MainCubit extends Cubit<MainStates> {
       print(ex.toString());
       return false;
     }
+  }
+
+  List<MedicationReminder> medications = [];
+  addMedication(MedicationReminder medication, hour, minute) {
+    emit(MedicationReminderAddingLoading());
+    try {
+      var medicationReminderBox = Hive.box<MedicationReminder>(kMedicationBox);
+      medicationReminderBox.add(medication);
+      setNotification(hour, minute, medication.name, medication.type);
+      emit(MedicationReminderAddingSuccess());
+    } on Exception catch (e) {
+      emit(MedicationReminderAddingFailed());
+    }
+  }
+
+  fetchAllReminders() {
+    emit(MedicationReminderAddingLoading());
+
+    medications = [];
+    var medicationReminderBox = Hive.box<MedicationReminder>(kMedicationBox);
+    medications = medicationReminderBox.values.toList();
+    emit(MedicationReminderAddingSuccess());
+  }
+
+  String? groupvalue;
+  late TimeOfDay time;
+  setgroupvalue(val) {
+    groupvalue = val;
+    emit(InitialState());
+  }
+
+  String valueOfTime = 'قم بتحديد ميعاد اخذ الدواء';
+
+  setTime(value) {
+    valueOfTime = value;
+    emit(InitialState());
+  }
+
+  late String medicationname;
+  steMedicationName(value) {
+    medicationname = value;
+    autovalidateMode = AutovalidateMode.disabled;
+    emit(InitialState());
   }
 }

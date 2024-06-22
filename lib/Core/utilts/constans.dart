@@ -15,3 +15,4 @@ const String intkey = 'id';
 const String boolkey = 'LoggedIN';
 const String baseUrl = 'http://webapi.runasp.net/api';
 const String imageUrl = 'http://webapi.runasp.net/Resources/';
+const String kMedicationBox = 'Medication Box';

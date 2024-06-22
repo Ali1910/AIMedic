@@ -21,3 +21,11 @@ class PublicQuestionTapped extends MainStates {}
 class Myquestionstapped extends MainStates {}
 
 class RatingAndComment extends MainStates {}
+
+final class MedicationReminderInitial extends MainStates {}
+
+final class MedicationReminderAddingLoading extends MainStates {}
+
+final class MedicationReminderAddingSuccess extends MainStates {}
+
+final class MedicationReminderAddingFailed extends MainStates {}

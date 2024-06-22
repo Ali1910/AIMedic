@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,12 +6,19 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gbsub/Core/cubits/main_cubit.dart';
 import 'package:gbsub/Core/networking/networking.dart';
 import 'package:gbsub/Core/services/sharedpref.dart';
+import 'package:gbsub/Core/utilts/constans.dart';
 import 'package:gbsub/Features/Home/Ui/Home_view.dart';
 import 'package:gbsub/Features/Login/Ui/login_view.dart';
+import 'package:gbsub/Features/medication_reminder/data/medication_reminder_model.dart';
+import 'package:hive_flutter/adapters.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Sharedhelper.sharedPreferencesinit();
+  await Hive.initFlutter();
+  Hive.registerAdapter(MedicationReminderAdapter());
+  await Hive.openBox<MedicationReminder>(kMedicationBox);
+
   HttpOverrides.global = MyHttpOverrides();
   await AwesomeNotifications().initialize(null, [
     NotificationChannel(

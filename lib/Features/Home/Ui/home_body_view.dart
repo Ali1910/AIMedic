@@ -1,9 +1,7 @@
-import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:gbsub/Core/services/notification_controller.dart';
-import 'package:gbsub/Core/utilts/widgets/custom_elevated_button_button.dart';
+
 import 'package:gbsub/Features/Home/Ui/widgets/custom_body_continer_list_view.dart';
 import 'package:gbsub/Features/Home/Ui/widgets/custom_medication_info_list_view.dart';
 import 'package:gbsub/Features/Home/Ui/widgets/custom_news_container.dart';
@@ -12,6 +10,7 @@ import 'package:gbsub/Features/Home/Ui/widgets/custom_tab_bar_list_view.dart';
 import 'package:gbsub/Features/covid19_radiography/ui/coivid19_view.dart';
 
 import 'package:gbsub/Features/diabetes_preidiction/ui/diabetes_view.dart';
+import 'package:gbsub/Features/medication_reminder/ui/medication_reminder_view.dart';
 import 'package:gbsub/Features/speciality_booking_doctor/Ui/speciality_view.dart';
 import 'package:gbsub/Features/speciality_contact_doctor/Ui/speciality_view.dart';
 import 'package:gbsub/Features/syptoms/ui/syptoms_view.dart';
@@ -36,45 +35,17 @@ class HomeViewBody extends StatelessWidget {
             SizedBox(
               height: 20.h,
             ),
-            CustomServiceRowCustomBodyContinerListView(
-              mainText: 'خدماتنا الطبية',
-              icon1: FontAwesomeIcons.userDoctor,
-              icon2: FontAwesomeIcons.squareWhatsapp,
-              icon3: FontAwesomeIcons.solidBell,
-              text1: 'اختيار  طبيب',
-              text2: 'محادثة طبيب',
-              text3: 'تذكيرات',
-              widget1: SpecialityViewPicking(),
-              widget2: SpecialityViewContact(),
-              widget3: Scaffold(
-                body: Center(
-                  child: Customelevatedbutton(
-                      text: '00',
-                      onPressed: () {
-                        AwesomeNotifications().setListeners(
-                            onActionReceivedMethod:
-                                NotificationController.onActionReceivedMethod,
-                            onDismissActionReceivedMethod:
-                                NotificationController
-                                    .onDismissActionReceivedMethod,
-                            onNotificationCreatedMethod: NotificationController
-                                .onNotificationCreatedMethod,
-                            onNotificationDisplayedMethod:
-                                NotificationController
-                                    .onNotificationDisplayedMethod);
-                        AwesomeNotifications().createNotification(
-                          content: NotificationContent(
-                            id: 1,
-                            channelKey: 'basicChannel',
-                            title: "تذكير بميعاد دواء",
-                            body:
-                                "لا تنسى تناول قرص الدواء الخاص بك المقرر في الساعة الخامسة ",
-                          ),
-                        );
-                      }),
-                ),
-              ),
-            ),
+            const CustomServiceRowCustomBodyContinerListView(
+                mainText: 'خدماتنا الطبية',
+                icon1: FontAwesomeIcons.userDoctor,
+                icon2: FontAwesomeIcons.squareWhatsapp,
+                icon3: FontAwesomeIcons.solidBell,
+                text1: 'اختيار  طبيب',
+                text2: 'محادثة طبيب',
+                text3: 'تذكيرات',
+                widget1: SpecialityViewPicking(),
+                widget2: SpecialityViewContact(),
+                widget3: MedicationReminderView()),
             const CustomServiceRowCustomBodyContinerListView(
               mainText: 'خدماتنا الالكترونية',
               icon1: FontAwesomeIcons.personDotsFromLine,
